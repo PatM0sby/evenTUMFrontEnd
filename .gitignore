@@ -1,0 +1,11 @@
+
+.idea/evenTUMFrontEnd.iml
+.idea/jsLibraryMappings.xml
+.idea/libraries/
+.idea/modules.xml
+.idea/workspace.xml
+bower_components/
+node_modules/
+public/css/
+public/js/
+public/libs/
