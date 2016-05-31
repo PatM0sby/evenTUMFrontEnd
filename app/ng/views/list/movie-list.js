@@ -37,6 +37,7 @@ angular.module('myApp.movies')
 
     .controller('MovieListCtrl', function($scope, Movie) {
         $scope.movies = Movie.query();
+        console.log($scope.movies);
 
         $scope.$on('movieCreated', function(ev, movie){
             $scope.movies.push(movie);
