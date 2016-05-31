@@ -7,7 +7,7 @@ Both for the front end and the back end check:
 
 * nodejs [official website](https://nodejs.org/en/) - nodejs includes [npm](https://www.npmjs.com/) (node package manager)
 
-mm
+mmmm
 Just for the front end application
 
 * bower [official website](http://bower.io/) - frontend dependencies package manager
