@@ -1,0 +1,11 @@
+var app = angular.module ("EvenTUM", [])
+
+app.controller ("HomeController", function($scope, $http){
+    $scope.message = "Possible caterer";
+
+    $http.get("http://localhost:3000/Caterer").success(function (response) {
+        $scope.Caterer = response;
+    }).error(function(err){
+       $scope.error = err;
+    });
+})
