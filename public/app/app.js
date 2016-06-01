@@ -1,11 +1,10 @@
-var app = angular.module ("EvenTUM", [])
+var app = angular.module ("EvenTUM", ["ngRoute"])
 
-app.controller ("HomeController", function($scope, $http){
-    $scope.message = "Possible caterer";
-
-    $http.get("http://localhost:3000/Caterer").success(function (response) {
-        $scope.Caterer = response;
-    }).error(function(err){
-       $scope.error = err;
-    });
+app.config(function($routeProvider){
+    $routeProvider
+        .when("/Caterer", {
+            templateUrl: "app/templates/Caterer/list.html",
+            controller: "CatererListController"
+        })
+        .otherwise({redirectTo: '/Caterer'});
 })

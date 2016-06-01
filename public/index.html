@@ -41,17 +41,7 @@
     </div>
 </nav>
 
-<div class="container" ng-controller="HomeController">
-
-    <div class="starter-template">
-        <h1>Caterer</h1>
-        <p class="lead">{{message}}.</p>
-    </div>
-
-    <ul>
-        <li ng-repeat = "Anbieter in Caterer">{{Anbieter.kitchen}}</li>
-    </ul>
-
+<div class="container" ng-view>
 </div><!-- /.container -->
 
 
@@ -61,7 +51,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="lib/jquery/dist/jquery/min.js"><\/script>')</script>
 <script src="lib/angular.min.js"></script>
+<script src="lib/angular-route.min.js"></script>
 <script src="app/app.js"></script>
+<script src="app/controller/CatererListController.js"></script>
 
 </body>
 </html>
