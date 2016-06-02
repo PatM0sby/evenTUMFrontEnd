@@ -1,39 +1,41 @@
-<form class="form-horizontal" ng-submit="createLoc()">
+<!-- TODO: setting specific ngmodels and input fields -->
+
+<form class="form-horizontal" ng-submit="createCat()">
     <fieldset>
-        <legend>Create Location offer</legend>
+        <legend>Create Caterer offer</legend>
 
         <div class="control-group">
             <label class="control-label" for="name">Name</label>
             <div class="controls">
-                <input id="name" name="name" type="text" placeholder="Name" class="input-xlarge" ng-model="Loc.name">
+                <input id="name" name="name" type="text" placeholder="Name" class="input-xlarge" ng-model="cat.name">
             </div>
         </div>
 
         <div class="control-group">
             <label class="control-label" for="textinput">Description</label>
             <div class="controls">
-                <input id="textinput" name="textinput" type="text" placeholder="what is it" class="input-xlarge" ng-model="Loc.description">
+                <input id="textinput" name="textinput" type="text" placeholder="what is it" class="input-xlarge" ng-model="cat.description">
             </div>
         </div>
 
         <div class="control-group">
             <label class="control-label" for="adress">Address</label>
             <div class="controls">
-                <input id="adress" name="adress" type="text" placeholder="Maximilianstraße 1" class="input-xlarge" ng-model="Loc.address">
+                <input id="adress" name="adress" type="text" placeholder="Maximilianstraße 1" class="input-xlarge" ng-model="cat.address">
             </div>
         </div>
 
         <div class="control-group">
             <label class="control-label" for="capacity">Capacity</label>
             <div class="controls">
-                <input id="capacity" name="capacity" type="text" placeholder="how many" class="input-xlarge" ng-model="Loc.capacity">
+                <input id="capacity" name="capacity" type="text" placeholder="how many" class="input-xlarge" ng-model="cat.capacity">
             </div>
         </div>
 
         <div class="control-group">
             <label class="control-label" for="price">Price</label>
             <div class="controls">
-                <input id="price" name="price" type="text" placeholder="$$$" class="input-xlarge" ng-model="Loc.price">
+                <input id="price" name="price" type="text" placeholder="$$$" class="input-xlarge" ng-model="cat.price">
             </div>
         </div>
 

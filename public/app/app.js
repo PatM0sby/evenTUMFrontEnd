@@ -1,19 +1,12 @@
-var app = angular.module ("EvenTUM", ["ngRoute"])
+(function (angular) {
+    "use strict";
 
-app.config(function($routeProvider){
-    $routeProvider
-        /*.when("/Caterer", {
-            templateUrl: "app/templates/Caterer/list.html",
-            controller: "CatererListController"
-        })*/
-        .when("/Location", {
-            templateUrl: "app/templates/Location/list.html",
-            controller: "LocationListController"
-        })
-        .when("/Location/new", {
-            templateUrl: "app/templates/Location/create.html",
-            controller: "LocationCreateController"
-        })
-        .otherwise({redirectTo: '/Location'});
+    angular.module ("EvenTUM", ["ngRoute", "EvenTUMLocation", "EvenTUMCaterer"])
+        .config(config);
 
-});
+    config.$inject = ["$routeProvider"];
+
+    function config ($routeProvider) {
+        $routeProvider.otherwise({redirectTo: '/Location'});
+    }
+})(angular);
