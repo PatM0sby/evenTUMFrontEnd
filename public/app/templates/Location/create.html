@@ -1,6 +1,6 @@
 <form class="form-horizontal" ng-submit="createFahrt()">
     <fieldset>
-        <legend>Fahrt anlegen</legend>
+        <legend>Create Location offer</legend>
 
         <div class="control-group">
             <label class="control-label" for="name">Name</label>
@@ -31,16 +31,16 @@
         </div>
 
         <div class="control-group">
-            <label class="control-label" for="price">KM-Start</label>
+            <label class="control-label" for="price">Price</label>
             <div class="controls">
-                <input id="price" name="price" type="text" placeholder="200" class="input-xlarge" ng-model="Loc.price">
+                <input id="price" name="price" type="text" placeholder="$$$" class="input-xlarge" ng-model="Loc.price">
             </div>
         </div>
 
         <!-- Button -->
         <div class="control-group">
             <div class="controls">
-                <input type="submit" class="btn btn-primary" value="Speichern"/>
+                <input type="submit" class="btn btn-primary" value="Save"/>
             </div>
         </div>
     </fieldset>

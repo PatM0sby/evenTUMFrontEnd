@@ -10,6 +10,10 @@ app.config(function($routeProvider){
             templateUrl: "app/templates/Location/list.html",
             controller: "LocationListController"
         })
+        .when("/Location/new", {
+            templateUrl: "app/templates/Location/create.html",
+            controller: "LocationCreateController"
+        })
         .otherwise({redirectTo: '/Location'});
 
-})
+});
