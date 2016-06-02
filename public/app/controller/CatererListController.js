@@ -1,3 +1,6 @@
+/**
+ * Created by FlorianStrauß on 01/06/16.
+ */
 var app = angular.module ("EvenTUM")
 
 app.controller ("CatererListController", function($scope, $http){
