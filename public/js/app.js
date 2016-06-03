@@ -40,7 +40,6 @@ angular.module('myApp', ['ui.router', 'myApp.movies', 'templates', 'ncy-angular-
         });
 
     }]);
-
 angular.module('myApp.movies', ['ngResource', 'ui.router'])
 
 .config(["$stateProvider", "$urlRouterProvider", "movieDetailsState", "movieListState", function ($stateProvider,   $urlRouterProvider, movieDetailsState, movieListState) {

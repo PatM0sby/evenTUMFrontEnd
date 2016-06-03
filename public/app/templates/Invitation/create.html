@@ -1,0 +1,49 @@
+<!-- TODO: setting specific ngmodels and input fields -->
+
+<form class="form-horizontal" ng-submit="createInv()">
+    <fieldset>
+        <legend>Create Invitation offer</legend>
+
+        <div class="control-group">
+            <label class="control-label" for="name">Name</label>
+            <div class="controls">
+                <input id="name" name="name" type="text" placeholder="Name" class="input-xlarge" ng-model="cat.name">
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="textinput">Description</label>
+            <div class="controls">
+                <input id="textinput" name="textinput" type="text" placeholder="what is it" class="input-xlarge" ng-model="cat.description">
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="adress">Address</label>
+            <div class="controls">
+                <input id="adress" name="adress" type="text" placeholder="Maximilianstraße 1" class="input-xlarge" ng-model="cat.address">
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="capacity">Capacity</label>
+            <div class="controls">
+                <input id="capacity" name="capacity" type="text" placeholder="how many" class="input-xlarge" ng-model="cat.capacity">
+            </div>
+        </div>
+
+        <div class="control-group">
+            <label class="control-label" for="price">Price</label>
+            <div class="controls">
+                <input id="price" name="price" type="text" placeholder="$$$" class="input-xlarge" ng-model="cat.price">
+            </div>
+        </div>
+
+        <!-- Button -->
+        <div class="control-group">
+            <div class="controls">
+                <input type="submit" class="btn btn-primary" value="Save"/>
+            </div>
+        </div>
+    </fieldset>
+</form>
