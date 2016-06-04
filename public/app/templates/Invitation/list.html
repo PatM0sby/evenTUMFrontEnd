@@ -11,21 +11,19 @@
                 <th>Name</th>
                 <th>Description</th>
                 <th>Price per Person</th>
-                <th>Kitchen</th>
-                <th>Selection</th>
-                <th>Vein</th>
-                <th>Offeror</th>
+                <th>Salutation</th>
+                <th>Text</th>
+                <th>Greeting</th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="Inv in Invitation">
-                <td>{{}}</td>
-                <td>{{}}</td>
-                <td>{{}}</td>
-                <td>{{}}</td>
-                <td>{{}}</td>
-                <td>{{}}</td>
-                <td>{{}}</td>
+                <td>{{Inv.name}}</td>
+                <td>{{Inv.description}}</td>
+                <td>{{Inv.pricePerPerson}}</td>
+                <td>{{Inv.salutation}}</td>
+                <td>{{Inv.text}}</td>
+                <td>{{Inv.greeting}}</td>
             </tr>
             </tbody>
         </table>

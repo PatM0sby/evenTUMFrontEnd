@@ -19,19 +19,19 @@
             </thead>
             <tbody>
             <tr ng-repeat="Cat in Caterer">
-                <td>{{}}</td>
-                <td>{{}}</td>
-                <td>{{}}</td>
-                <td>{{}}</td>
-                <td>{{}}</td>
-                <td>{{}}</td>
-                <td>{{}}</td>
+                <td>{{cat.name}}</td>
+                <td>{{cat.description}}</td>
+                <td>{{cat.pricePerPerson}}</td>
+                <td>{{cat.kitchen}}</td>
+                <td>{{cat.selection}}</td>
+                <td>{{cat.vein}}</td>
+                <td>{{cat.offeror}}</td>
             </tr>
             </tbody>
         </table>
     </div>
 </div>
 <ul>
-    <li ng-repeat = "Cat in Caterer">{{Cat.kitchen}}</li>
+    <li ng-repeat = "Cat in Caterer">{{cat.kitchen}}</li>
 </ul>
 <a href = "#/Caterer/new" class = "btn btn-default">Add new Caterer</a>
