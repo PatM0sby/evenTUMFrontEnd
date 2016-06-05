@@ -43,6 +43,7 @@
                     $location.url("/Invitation");
                 });
         }
+        
     }
 
     function InvitationListController ($scope, $http) {
