@@ -42,6 +42,7 @@
                     $location.url("/Caterer");
                 });
         }
+        
     }
 
     function CatererListController ($scope, $http) {
