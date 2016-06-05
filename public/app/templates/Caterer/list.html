@@ -14,24 +14,24 @@
                 <th>Kitchen</th>
                 <th>Selection</th>
                 <th>Vein</th>
-                <th>Offeror</th>
+               <!-- <th>Offeror</th>-->
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="Cat in Caterer">
+            <tr ng-repeat="cat in Caterer">
                 <td>{{cat.name}}</td>
                 <td>{{cat.description}}</td>
                 <td>{{cat.pricePerPerson}}</td>
                 <td>{{cat.kitchen}}</td>
                 <td>{{cat.selection}}</td>
                 <td>{{cat.vein}}</td>
-                <td>{{cat.offeror}}</td>
+                <!--<td>{{cat.offeror}}</td>-->
             </tr>
             </tbody>
         </table>
     </div>
 </div>
-<ul>
+<!--<ul>
     <li ng-repeat = "Cat in Caterer">{{cat.kitchen}}</li>
-</ul>
+</ul>-->
 <a href = "#/Caterer/new" class = "btn btn-default">Add new Caterer</a>
