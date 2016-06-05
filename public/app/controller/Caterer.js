@@ -36,7 +36,7 @@
         $scope.cat = {};
 
         $scope.createCat = function(){
-            $http.post("http://localhost:3000/api/caterers", $scope.cat)
+            $http.post("http://localhost:3000/api/caterer", $scope.cat)
                 .success(function(response){
                     console.log(response);
                     $location.url("/Caterer");
@@ -47,7 +47,7 @@
     function CatererListController ($scope, $http) {
         $scope.message = "Possible caterer";
 
-        $http.get("http://localhost:3000/Caterer").success(function (response) {
+        $http.get("http://localhost:3000/api/caterer").success(function (response) {
             $scope.Caterer = response;
         }).error(function(err){
             $scope.error = err;

@@ -37,7 +37,7 @@
         $scope.Inv = {};
 
         $scope.createInv = function(){
-            $http.post("http://localhost:3000/api/Invitations", $scope.Inv)
+            $http.post("http://localhost:3000/api/invitations", $scope.Inv)
                 .success(function(response){
                     console.log(response);
                     $location.url("/Invitation");
@@ -48,7 +48,7 @@
     function InvitationListController ($scope, $http) {
         $scope.message = "Possible Invitations";
 
-        $http.get("http://localhost:3000/Invitation").success(function (response) {
+        $http.get("http://localhost:3000/api/invitations").success(function (response) {
             $scope.inv = response;
         }).error(function(err){
             $scope.error = err;
