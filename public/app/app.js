@@ -7,6 +7,6 @@
     config.$inject = ["$routeProvider"];
 
     function config ($routeProvider) {
-        $routeProvider.otherwise({redirectTo: '/Location'});
+        $routeProvider.otherwise({redirectTo: '/Caterer'});
     }
 })(angular);
