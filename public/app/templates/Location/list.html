@@ -9,6 +9,7 @@
             <thead>
             <tr>
                 <th>Name</th>
+                <th>Pic</th>
                 <th>Description</th>
                 <th>Address</th>
                 <th>Capacity</th>
@@ -19,10 +20,13 @@
             <tbody>
             <tr ng-repeat="Loc in Location">
                 <td>{{Loc.name}}</td>
+                <td>{{Loc.pic}}</td>
                 <td>{{Loc.description}}</td>
                 <td>{{Loc.address}}</td>
                 <td>{{Loc.capacity}}</td>
                 <td>{{Loc.price}}</td>
+                <td><a href="#/Location/{{Loc._id}}/edit" class="btn btn-default">Edit</a></td>
+                <td><a href="" ng-click="deleteLoc(Loc)" class="btn btn-danger">Delete</a></td>
             </tr>
             </tbody>
         </table>

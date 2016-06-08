@@ -1,0 +1,62 @@
+<div class="control-group">
+    <label class="control-label" for="name">Name</label>
+    <div class="controls">
+        <input id="name" name="name" type="text" placeholder="Name" class="input-xlarge" ng-model="Loc.name">
+    </div>
+</div>
+
+<div class="control-group">
+    <label class="control-label" for="pic">Pic</label>
+    <div class="controls">
+        Make sure your image is in 16:9 format. <br>
+        The object should fill the whole picture.
+        <p></p>
+        <input id="pic" name="pic" type="file" accept="image/*" onchange="loadFile(event)" ng.model="Loc.pic">
+        <img height=100px width=150px id="output"/>
+        <script>
+            var loadFile = function(event) {
+                var reader = new FileReader();
+                reader.onload = function(){
+                    var output = document.getElementById('output');
+                    output.src = reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+            };
+        </script>
+    </div>
+</div>
+
+<div class="control-group">
+    <label class="control-label" for="textinput">Description</label>
+    <div class="controls">
+        <input id="textinput" name="textinput" type="text" placeholder="what is it" class="input-xlarge" ng-model="Loc.description">
+    </div>
+</div>
+
+<div class="control-group">
+    <label class="control-label" for="address">Address</label>
+    <div class="controls">
+        <input id="address" name="address" type="text" placeholder="Maximilianstraße 1" class="input-xlarge" ng-model="Loc.address">
+    </div>
+</div>
+
+<div class="control-group">
+    <label class="control-label" for="capacity">Capacity</label>
+    <div class="controls">
+        <input id="capacity" name="capacity" type="text" placeholder="how many" class="input-xlarge" ng-model="Loc.capacity">
+    </div>
+</div>
+
+<div class="control-group">
+    <label class="control-label" for="price">Price</label>
+    <div class="controls">
+        <input id="price" name="price" type="text" placeholder="$$$" class="input-xlarge" ng-model="Loc.price">
+    </div>
+</div>
+
+<!-- Button -->
+<div class="control-group">
+    <div class="controls">
+        <input type="submit" class="btn btn-primary" value="Save"/>
+    </div>
+</div>

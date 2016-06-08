@@ -1,0 +1,62 @@
+<div class="control-group">
+    <label class="control-label" for="name">Name</label>
+    <div class="controls">
+        <input id="name" name="name" type="text" placeholder="Name" class="input-xlarge" ng-model="Inv.name">
+    </div>
+</div>
+
+<div class="control-group">
+    <label class="control-label" for="layover">Layover</label>
+    <div class="controls">
+        Make sure your image is in 16:9 format. <br>
+        The object should fill the whole picture.
+        <p></p>
+        <input id="layover" name="layover" type="file" accept="image/*" onchange="loadFile(event)" ng.model="Inv.layover">
+        <img height=100px width=150px id="output"/>
+        <script>
+            var loadFile = function(event) {
+                var reader = new FileReader();
+                reader.onload = function(){
+                    var output = document.getElementById('output');
+                    output.src = reader.result;
+                };
+                reader.readAsDataURL(event.target.files[0]);
+            };
+        </script>
+    </div>
+</div>
+
+<div class="control-group">
+    <label class="control-label" for="textinput">Description</label>
+    <div class="controls">
+        <input id="textinput" name="textinput" type="text" placeholder="Birthday/Party template" class="input-xlarge" ng-model="Inv.description">
+    </div>
+</div>
+
+<div class="control-group">
+    <label class="control-label" for="salutation">Salutation</label>
+    <div class="controls">
+        <input id="salutation" name="salutation" type="text" placeholder="Hello my friends" class="input-xlarge" ng-model="Inv.salutation">
+    </div>
+</div>
+
+<div class="control-group">
+    <label class="control-label" for="text">Text</label>
+    <div class="controls">
+        <input id="text" name="text" type="text" placeholder="I celebrate ..." class="input-xlarge" ng-model="Inv.text">
+    </div>
+</div>
+
+<div class="control-group">
+    <label class="control-label" for="greeting">Greeting</label>
+    <div class="controls">
+        <input id="greeting" name="greeting" type="text" placeholder="See you" class="input-xlarge" ng-model="Inv.greeting">
+    </div>
+</div>
+
+<!-- Button -->
+<div class="control-group">
+    <div class="controls">
+        <input type="submit" class="btn btn-primary" value="Save"/>
+    </div>
+</div>

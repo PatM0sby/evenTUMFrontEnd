@@ -29,7 +29,11 @@
             .when("/Invitation/new", {
                 templateUrl: "app/templates/Invitation/create.html",
                 controller: "InvitationCreateController"
-            });
+            })
+            .when("/Invitation/:id/edit", {
+                templateUrl: "app/templates/Invitation/edit.html",
+                controller: "InvitationEditController"
+        });
         console.log("Zeile 33 Invitation Controller Routes" );
     }
 
@@ -54,5 +58,24 @@
         }).error(function(err){
             $scope.error = err;
         });
+        $scope.deleteInv = function(Inv){
+            $http.delete("http://localhost:3000/api/invitations/" + Inv._id).success(function(response){
+                $scope.Invitation.pop(Inv);
+            });
+        };
     }
+
+    function InvitationEditController ($scope, $http, $location, $routeParams) {
+        $scope.Inv = {};
+        var id = $routeParams.id;
+
+        $http.get("http://localhost:3000/api/invitations/" + id).success(function (response) {
+            $scope.Inv = response;
+        });
+
+        $scope.saveCat = function() {
+            $http.put("http://localhost:3000/api/invitations" + $scope.Inv._id, $scope.Inv)
+                .success(function(response){ $location.url("/Invitation")});
+        };
+    };
 })(angular);
