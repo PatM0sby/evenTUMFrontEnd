@@ -29,7 +29,11 @@
             .when("/Caterer/new", {
                 templateUrl: "app/templates/Caterer/create.html",
                 controller: "CatererCreateController"
-            });
+            })
+            .when("/Caterer/:id/edit", {
+                templateUrl: "app/templates/Caterer/edit.html",
+                controller: "CatererEditController"
+        });
     }
 
     function CatererCreateController ($scope, $http, $location) {
@@ -51,6 +55,26 @@
             $scope.Caterer = response;
         }).error(function(err){
             $scope.error = err;
-        });
+        })
+
+        $scope.deleteCat = function(cat){
+            $http.delete("http://localhost:3000/api/caterer/" + cat._id).success(function(response){
+                $scope.Caterer.pop(cat);
+            });
+        };
     }
+
+    function CatererEditController ($scope, $http, $location, $routeParams) {
+        $scope.cat = {};
+        var id = $routeParams.id;
+
+        $http.get("http://localhost:3000/api/caterer/" + id).success(function (response) {
+            $scope.cat = response;
+        });
+
+        $scope.saveCat = function() {
+            $http.put("http://localhost:3000/api/caterer" + $scope.cat._id, $scope.cat)
+                .success(function(response){ $location.url("/Caterer")});
+        };
+    };
 })(angular);

@@ -1,63 +1,8 @@
-<!-- TODO: setting specific ngmodels and input fields -->
-
 <form class="form-horizontal" ng-submit="createCat()">
     <fieldset>
         <legend>Create Caterer offer</legend>
 
-        <div class="control-group">
-            <label class="control-label" for="name">Name</label>
-            <div class="controls">
-                <input id="name" name="name" type="text" placeholder="Name of menu" class="input-xlarge" ng-model="cat.name">
-            </div>
-        </div>
+        <div ng-include="'app/templates/Caterer/form.html'"></div>
 
-        <div class="control-group">
-            <label class="control-label" for="textinput">Description</label>
-            <div class="controls">
-                <input id="textinput" name="textinput" type="text" placeholder="what is it" class="input-xlarge" ng-model="cat.description">
-            </div>
-        </div>
-
-        <div class="control-group">
-            <label class="control-label" for="pricePerPerson">Price per Person</label>
-            <div class="controls">
-                <input id="pricePerPerson" name="pricePerPerson" type="text" placeholder="30" class="input-xlarge" ng-model="cat.pricePerPerson">
-            </div>
-        </div>
-
-        <div class="control-group">
-            <label class="control-label" for="kitchen">Kitchen</label>
-            <div class="controls">
-                <input id="kitchen" name="kitchen" type="text" placeholder="italian" class="input-xlarge" ng-model="cat.kitchen">
-            </div>
-        </div>
-
-        <div class="control-group">
-            <label class="control-label" for="selection">Selection</label>
-            <div class="controls">
-                <input id="selection" name="selection" type="text" placeholder="snacks/menu" class="input-xlarge" ng-model="cat.selection">
-            </div>
-        </div>
-
-        <div class="control-group">
-            <label class="control-label" for="vein">Vein</label>
-            <div class="controls">
-                <input id="vein" name="vein" type="text" placeholder="vegetarian/vegan/normal" class="input-xlarge" ng-model="cat.vein">
-            </div>
-        </div>
-
-       <!-- <div class="control-group">
-            <label class="control-label" for="offeror">Offeror</label>
-            <div class="controls">
-                <input id="offeror" name="offeror" type="text" placeholder="Luigi's Pizza" class="input-xlarge" ng-model="cat.offeror">
-            </div>
-        </div>-->
-
-        <!-- Button -->
-        <div class="control-group">
-            <div class="controls">
-                <input type="submit" class="btn btn-primary" value="Save"/>
-            </div>
-        </div>
     </fieldset>
 </form>

@@ -9,23 +9,28 @@
             <thead>
             <tr>
                 <th>Name</th>
+                <th>Pic</th>
                 <th>Description</th>
                 <th>Price per Person</th>
                 <th>Kitchen</th>
                 <th>Selection</th>
                 <th>Vein</th>
                <!-- <th>Offeror</th>-->
+                <th></th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="cat in Caterer">
                 <td>{{cat.name}}</td>
+                <td>{{cat.pic}}</td>
                 <td>{{cat.description}}</td>
                 <td>{{cat.pricePerPerson}}</td>
                 <td>{{cat.kitchen}}</td>
                 <td>{{cat.selection}}</td>
                 <td>{{cat.vein}}</td>
                 <!--<td>{{cat.offeror}}</td>-->
+                <td><a href="#/Caterer/{{cat._id}}/edit" class="btn btn-default">Edit</a></td>
+                <td><a href="" ng-click="deleteCat(cat)" class="btn btn-danger">Delete</a></td>
             </tr>
             </tbody>
         </table>
