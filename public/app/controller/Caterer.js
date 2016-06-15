@@ -55,10 +55,10 @@
             $scope.Caterer = response;
         }).error(function(err){
             $scope.error = err;
-        })
-
+        });
         $scope.deleteCat = function(cat){
             $http.delete("http://localhost:3000/api/caterer/" + cat._id).success(function(response){
+                console.log(response);
                 $scope.Caterer.pop(cat);
             });
         };

@@ -37,43 +37,43 @@
     }
 
     function InvitationCreateController ($scope, $http, $location) {
-        $scope.Inv = {};
+        $scope.inv = {};
 
         $scope.createInv = function(){
-            $http.post("http://localhost:3000/api/invitations", $scope.Inv)
+            $http.post("http://localhost:3000/api/invitations", $scope.inv)
                 .success(function(response){
                     console.log(response);
                     $location.url("/Invitation");
                 });
         }
-        
     }
 
     function InvitationListController ($scope, $http) {
         $scope.message = "Possible Invitations";
 
         $http.get("http://localhost:3000/api/invitations").success(function (response) {
-            $scope.inv = response;
+            $scope.Invitations = response;
         }).error(function(err){
             $scope.error = err;
         });
-        $scope.deleteInv = function(Inv){
-            $http.delete("http://localhost:3000/api/invitations/" + Inv._id).success(function(response){
-                $scope.Invitation.pop(Inv);
+        $scope.deleteInv = function(inv){
+            $http.delete("http://localhost:3000/api/invitations/" + inv._id).success(function(response){
+                console.log(response);
+                $scope.Invitations.pop(inv);
             });
         };
     }
 
     function InvitationEditController ($scope, $http, $location, $routeParams) {
-        $scope.Inv = {};
+        $scope.inv = {};
         var id = $routeParams.id;
 
         $http.get("http://localhost:3000/api/invitations/" + id).success(function (response) {
-            $scope.Inv = response;
+            $scope.inv = response;
         });
 
-        $scope.saveCat = function() {
-            $http.put("http://localhost:3000/api/invitations" + $scope.Inv._id, $scope.Inv)
+        $scope.saveInv = function() {
+            $http.put("http://localhost:3000/api/invitations" + $scope.inv._id, $scope.inv)
                 .success(function(response){ $location.url("/Invitation")});
         };
     };

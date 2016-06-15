@@ -1,7 +1,7 @@
 <div class="control-group">
     <label class="control-label" for="name">Name</label>
     <div class="controls">
-        <input id="name" name="name" type="text" placeholder="Name" class="input-xlarge" ng-model="Inv.name">
+        <input id="name" name="name" type="text" placeholder="Name" class="input-xlarge" ng-model="inv.name">
     </div>
 </div>
 
@@ -11,7 +11,7 @@
         Make sure your image is in 16:9 format. <br>
         The object should fill the whole picture.
         <p></p>
-        <input id="pattern" name="pattern" type="file" accept="image/*" onchange="loadFile(event)" ng.model="Inv.pattern">
+        <input id="pattern" name="pattern" type="file" accept="image/*" onchange="loadFile(event)" ng.model="inv.pattern">
         <img height=100px width=150px id="output"/>
         <script>
             var loadFile = function(event) {
@@ -29,28 +29,35 @@
 <div class="control-group">
     <label class="control-label" for="textinput">Description</label>
     <div class="controls">
-        <input id="textinput" name="textinput" type="text" placeholder="Birthday/Party template" class="input-xlarge" ng-model="Inv.description">
+        <input id="textinput" name="textinput" type="text" placeholder="Birthday/Party template" class="input-xlarge" ng-model="inv.description">
+    </div>
+</div>
+
+<div class="control-group">
+    <label class="control-label" for="textinput">Price per Persone</label>
+    <div class="controls">
+        <input id="textinput" name="textinput" type="text" placeholder="5 € template" class="input-xlarge" ng-model="inv.pricePerPerson">
     </div>
 </div>
 
 <div class="control-group">
     <label class="control-label" for="salutation">Salutation</label>
     <div class="controls">
-        <input id="salutation" name="salutation" type="text" placeholder="Hello my friends" class="input-xlarge" ng-model="Inv.salutation">
+        <input id="salutation" name="salutation" type="text" placeholder="Hello my friends" class="input-xlarge" ng-model="inv.salutation">
     </div>
 </div>
 
 <div class="control-group">
     <label class="control-label" for="text">Text</label>
     <div class="controls">
-        <input id="text" name="text" type="text" placeholder="I celebrate ..." class="input-xlarge" ng-model="Inv.text">
+        <input id="text" name="text" type="text" placeholder="I celebrate ..." class="input-xlarge" ng-model="inv.text">
     </div>
 </div>
 
 <div class="control-group">
     <label class="control-label" for="greeting">Greeting</label>
     <div class="controls">
-        <input id="greeting" name="greeting" type="text" placeholder="See you" class="input-xlarge" ng-model="Inv.greeting">
+        <input id="greeting" name="greeting" type="text" placeholder="See you" class="input-xlarge" ng-model="inv.greeting">
     </div>
 </div>
 
