@@ -1,7 +1,7 @@
 (function (angular) {
     "use strict";
 
-    angular.module ("EvenTUM", ["ngRoute", "EvenTUMLocation", "EvenTUMCaterer", "EvenTUMInvitation", "EvenTUMHome"])
+    angular.module ("EvenTUM", ["ngRoute", "EvenTUMLocation", "EvenTUMCaterer", "EvenTUMInvitation", "EvenTUMHome", "EvenTUMOffer"])
         .config(config);
 
     config.$inject = ["$routeProvider"];

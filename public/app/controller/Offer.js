@@ -7,7 +7,7 @@
 (function (angular) {
     "use strict";
     
-    angular.module("EvenTUMHome", ["ngRoute"])
+    angular.module("EvenTUMOffer", ["ngRoute"])
         .config(config);
 
     // dependencies
