@@ -6,12 +6,12 @@
 </div>
 
 <div class="control-group">
-    <label class="control-label" for="layover">Layover</label>
+    <label class="control-label" for="pattern">Pattern</label>
     <div class="controls">
         Make sure your image is in 16:9 format. <br>
         The object should fill the whole picture.
         <p></p>
-        <input id="layover" name="layover" type="file" accept="image/*" onchange="loadFile(event)" ng.model="Inv.layover">
+        <input id="pattern" name="pattern" type="file" accept="image/*" onchange="loadFile(event)" ng.model="Inv.pattern">
         <img height=100px width=150px id="output"/>
         <script>
             var loadFile = function(event) {

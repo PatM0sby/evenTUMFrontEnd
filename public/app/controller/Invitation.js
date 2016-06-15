@@ -1,5 +1,5 @@
 /**
- * Refaktoring, damit Dateien minifiziert werden können und trotzdem Funktionalität erhalten bleibt
+ * Refactoring, damit Dateien minifiziert werden können und trotzdem Funktionalität erhalten bleibt
  */
 (function (angular) {
     "use strict";
@@ -34,7 +34,6 @@
                 templateUrl: "app/templates/Invitation/edit.html",
                 controller: "InvitationEditController"
         });
-        console.log("Zeile 33 Invitation Controller Routes" );
     }
 
     function InvitationCreateController ($scope, $http, $location) {
