@@ -17,9 +17,9 @@
 
     // dependencies
     config.$inject = ["$routeProvider"];
-    InvitationCreateController.$inject = ["$scope", "$http", "$location"];
-    InvitationListController.$inject = ["$scope", "$http"];
-    InvitationEditController.$inject = ["$scope", "http", "$location", "$routeParams"]
+    InvitationCreateController.$inject = ["$scope", "$http", "$location", "API"];
+    InvitationListController.$inject = ["$scope", "$http", "API"];
+    InvitationEditController.$inject = ["$scope", "$http", "$location", "$routeParams", "API"];
 
     // functionality
     function config ($routeProvider) {
@@ -38,7 +38,7 @@
         });
     }
 
-    function InvitationCreateController ($scope, $http, $location) {
+    function InvitationCreateController ($scope, $http, $location, api) {
         $scope.inv = {};
 
         $scope.createInv = function(){
@@ -50,7 +50,7 @@
         }
     }
 
-    function InvitationListController ($scope, $http) {
+    function InvitationListController ($scope, $http, api) {
         $scope.message = "Possible Invitations";
 
         $http.get("http://localhost:3000/api/invitations").success(function (response) {
@@ -66,7 +66,7 @@
         };
     }
 
-    function InvitationEditController ($scope, $http, $location, $routeParams) {
+    function InvitationEditController ($scope, $http, $location, $routeParams, api) {
         $scope.inv = {};
         var id = $routeParams.id;
 
@@ -75,12 +75,15 @@
         });
 
         $scope.saveInv = function() {
-            $http.put("http://localhost:3000/api/invitations" + $scope.inv._id, $scope.inv)
-                .success(function(response){ $location.url("/Invitation")});
+            $http.put("http://localhost:3000/api/invitations/" + id, $scope.inv)
+                .success(function(response){
+                    console.log(response);
+                    $location.url("/Invitation")
+                });
         };
-    };
+    }
 
-    function InvitationDeleteController ($scope, $http, $location, $routeParams) {
+   /* function InvitationDeleteController ($scope, $http, $location, $routeParams) {
 
-    };
+    }; */
 })(angular);

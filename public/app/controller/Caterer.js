@@ -12,12 +12,14 @@
     angular.module("EvenTUMCaterer", ["ngRoute"])
         .config(config)
         .controller("CatererCreateController", CatererCreateController)
-        .controller("CatererListController", CatererListController);
+        .controller("CatererListController", CatererListController)
+        .controller("CatererEditController", CatererEditController);
 
     // dependencies
     config.$inject = ["$routeProvider"];
-    CatererCreateController.$inject = ["$scope", "$http", "$location"];
-    CatererListController.$inject = ["$scope", "$http"];
+    CatererCreateController.$inject = ["$scope", "$http", "$location", "API"];
+    CatererListController.$inject = ["$scope", "$http", "API"];
+    CatererEditController.$inject = ["$scope", "$http", "$location", "$routeParams", "API"];
 
     // functionality
     function config ($routeProvider) {
@@ -36,7 +38,7 @@
         });
     }
 
-    function CatererCreateController ($scope, $http, $location) {
+    function CatererCreateController ($scope, $http, $location, api) {
         $scope.cat = {};
 
         $scope.createCat = function(){
@@ -48,7 +50,7 @@
         }
     }
 
-    function CatererListController ($scope, $http) {
+    function CatererListController ($scope, $http, api) {
         $scope.message = "Possible caterer";
 
         $http.get("http://localhost:3000/api/caterer").success(function (response) {
@@ -64,7 +66,7 @@
         };
     }
 
-    function CatererEditController ($scope, $http, $location, $routeParams) {
+    function CatererEditController ($scope, $http, $location, $routeParams, api) {
         $scope.cat = {};
         var id = $routeParams.id;
 
@@ -73,7 +75,7 @@
         });
 
         $scope.saveCat = function() {
-            $http.put("http://localhost:3000/api/caterer" + $scope.cat._id, $scope.cat)
+            $http.put("http://localhost:3000/api/caterer/" + $scope.cat._id, $scope.cat)
                 .success(function(response){ $location.url("/Caterer")});
         };
     };
