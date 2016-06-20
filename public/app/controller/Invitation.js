@@ -12,12 +12,14 @@
     angular.module("EvenTUMInvitation", ["ngRoute"])
         .config(config)
         .controller("InvitationCreateController", InvitationCreateController)
-        .controller("InvitationListController", InvitationListController);
+        .controller("InvitationListController", InvitationListController)
+        .controller("InvitationEditController", InvitationEditController);
 
     // dependencies
     config.$inject = ["$routeProvider"];
     InvitationCreateController.$inject = ["$scope", "$http", "$location"];
     InvitationListController.$inject = ["$scope", "$http"];
+    InvitationEditController.$inject = ["$scope", "http", "$location", "$routeParams"]
 
     // functionality
     function config ($routeProvider) {
@@ -76,5 +78,9 @@
             $http.put("http://localhost:3000/api/invitations" + $scope.inv._id, $scope.inv)
                 .success(function(response){ $location.url("/Invitation")});
         };
+    };
+
+    function InvitationDeleteController ($scope, $http, $location, $routeParams) {
+
     };
 })(angular);

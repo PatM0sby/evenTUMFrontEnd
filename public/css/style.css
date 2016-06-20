@@ -2,3 +2,32 @@ body {
     padding-top:80px;
     padding-bottom: 20px;
 }
+
+.navbar-inverse .navbar-nav>li>a.btn {
+    color: white;
+    padding: 10px 15px;
+}
+
+
+#home {
+    background-image: url(https://pixabay.com/static/uploads/photo/2015/10/12/15/09/concert-984237_960_720.jpg);
+    background-size: cover;
+    color: white;
+    padding-top: 80px;
+    position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+}
+
+#footer {
+    background-color: #ccc;
+    line-height: 3em;
+    position: fixed;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    text-align: center;
+
+}

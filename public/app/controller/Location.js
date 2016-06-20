@@ -2,13 +2,16 @@
     "use strict";
 
     angular.module("EvenTUMLocation", ["ngRoute"])
+        .constant("API", "http://localhost:3000/api/")
         .config(config)
         .controller("LocationCreateController", LocationCreateController)
+        .controller("LocationEditController", LocationEditController)
         .controller("LocationListController", LocationListController);
 
     config.$inject = ["$routeProvider"];
-    LocationCreateController.$inject = ["$scope", "$http", "$location"];
-    LocationListController.$inject = ["$scope", "$http"];
+    LocationCreateController.$inject = ["$scope", "$http", "$location", "API"];
+    LocationEditController.$inject = ["$scope", "$http", "$location", "$routeParams", "API"];
+    LocationListController.$inject = ["$scope", "$http", "API"];
 
     function config ($routeProvider) {
         $routeProvider
@@ -26,12 +29,12 @@
             });
     }
 
-    function LocationCreateController ($scope, $http, $location) {
+    function LocationCreateController ($scope, $http, $location, api) {
         $scope.Loc = {};
 
         $scope.createLoc = function(){
             console.log("Page 8");
-            $http.post("http://localhost:3000/api/locations", $scope.Loc)
+            $http.post(api + "locations", $scope.Loc)
                 .success(function(response){
                     console.log(response);
                     $location.url("/Location");
@@ -39,33 +42,38 @@
         }
     }
 
-    function LocationListController ($scope, $http) {
+    function LocationListController ($scope, $http, api) {
         $scope.message = "Possible location";
 
-        $http.get("http://localhost:3000/api/locations").success(function (response) {
+        $http.get(api + "locations").success(function (response) {
             console.log(response);
             $scope.Location = response;
         }).error(function(err){
             $scope.error = err;
         });
         $scope.deleteLoc = function(Loc){
-            $http.delete("http://localhost:3000/api/locations/" + Loc._id).success(function(response){
+            $http.delete(api + "locations/" + Loc._id).success(function(response){
+                console.log(response);
                 $scope.Location.pop(Loc);
             });
         };
     }
 
-    function LocationEditController ($scope, $http, $location, $routeParams) {
+    function LocationEditController ($scope, $http, $location, $routeParams, api) {
         $scope.Loc = {};
         var id = $routeParams.id;
 
-        $http.get("http://localhost:3000/api/locations/" + id).success(function (response) {
+        $http.get(api + "locations/" + id).success(function (response) {
+            console.log(response);
             $scope.Loc = response;
         });
 
-        $scope.saveCat = function() {
-            $http.put("http://localhost:3000/api/locations" + $scope.Loc._id, $scope.Loc)
-                .success(function(response){ $location.url("/Location")});
+        $scope.saveLoc = function() {
+            $http.put(api + "locations/" + id, $scope.Loc)
+                .success(function(response){
+                    console.log(response);
+                    $location.url("/Location")
+                });
         };
     }
 })(angular);
