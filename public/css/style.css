@@ -31,3 +31,18 @@ body {
     text-align: center;
 
 }
+
+#cont {
+    width:700px;
+    height: 200px;
+    float:left;
+    padding:10px;
+    overflow: scroll;
+}
+
+.scroll {
+    overflow: scroll;
+    /*height: 150px;
+    width: 200px;*/
+    padding: 10px;
+}
