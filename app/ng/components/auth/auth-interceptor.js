@@ -1,6 +1,6 @@
 (function(){
 
-    angular.module('myApp')
+    angular.module('auth', [])
         .factory("authInterceptor", authInterceptor);
 
     function authInterceptor(BASEURL, auth) {

@@ -1,14 +1,16 @@
 (function(){
 
-    angular.module('myApp')
+    angular.module('User', [])
         .service('currUser', currUserService);
 
-    function currUserService(BASEURL, $http, auth) {
+    currUserService.$inject = ['BASEURL', '$http', 'authService'];
+
+    function currUserService(BASEURL, $http, authService) {
 
         this.register = register;
         this.login = login;
-        this.loggedIn = auth.isAuthed;
-        this.logout = auth.deleteToken;
+        this.loggedIn = authService.isAuthed;
+        this.logout = authService.deleteToken;
         this.getUser = getUser;
 
 
@@ -29,8 +31,8 @@
         }
 
         function getUser() {
-            var token = auth.getToken();
-            return token? auth.parseJwt(token).user : {};
+            var token = authService.getToken();
+            return token ? authService.parseJwt(token).user : {};
         }
     }
 

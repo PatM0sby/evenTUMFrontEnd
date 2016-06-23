@@ -1,25 +1,24 @@
-angular.module('myApp')
-    .controller("login", function ($scope, currUser, $mdDialog) {
+angular.module('Login', ['User'])
+    .controller("login", function ($scope, currUser) {
         $scope.username = '';
         $scope.pwd = '';
-        $scope.errorText = '';
 
-        $scope.login = login;
-        $scope.cancel = cancel;
-
-        function login() {
+        $scope.login = function () {
             currUser.login($scope.username, $scope.password).then(function () {
-                $mdDialog.hide();
             }, function (response) {
                 if (response.status == 400 || response.status == 401) {
-                    $scope.errorText = "Wrong username or password.";
+                    $scope.alertDialog = {
+                        msg: 'Wrong username or password.',
+                        priority: 'danger',
+                        visible: true
+                    };
                 } else {
-                    $scope.errorText = "An unknown error occured. please try again later.";
+                    $scope.alertDialog = {
+                        msg: 'An unknown error occured. please try again later.',
+                        priority: 'danger',
+                        visible: true
+                    };
                 }
             });
-        }
-
-        function cancel() {
-            $mdDialog.cancel();
         }
     });

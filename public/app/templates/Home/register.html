@@ -1,0 +1,28 @@
+<div class="modal fade" id="register-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <header class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Register</h4>
+            </header>
+            <div class="modal-body">
+                <div alert-dialog msg="alertDialog.msg" priority="alertDialog.priority" visible="alertDialog.visible"></div>
+                <form class="no-overflow" ng-submit="register.execute()">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control" id="username" ng-model="register.username" placeholder="Max Mustermann" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" ng-model="register.password" placeholder="Password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="repeatPassword">Repeat password</label>
+                        <input type="password" class="form-control" id="repeatPassword" ng-model="register.repeatPassword" placeholder="Repeat password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary pull-right">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

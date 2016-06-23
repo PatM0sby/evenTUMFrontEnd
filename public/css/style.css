@@ -8,6 +8,13 @@ body {
     padding: 10px 15px;
 }
 
+.navbar-right li {
+    padding: 0 0.5rem;
+}
+
+.no-overflow {
+    overflow: hidden;
+}
 
 #home {
     background-image: url(https://pixabay.com/static/uploads/photo/2015/10/12/15/09/concert-984237_960_720.jpg);

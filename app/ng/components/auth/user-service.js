@@ -1,6 +1,6 @@
 (function(){
 
-    angular.module('myApp')
+    angular.module('User', [])
         .service('currUser', currUserService);
 
     function currUserService(BASEURL, $http, auth) {
@@ -30,7 +30,7 @@
 
         function getUser() {
             var token = auth.getToken();
-            return token? auth.parseJwt(token).user : {};
+            return token ? auth.parseJwt(token).user : {};
         }
     }
 
