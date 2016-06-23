@@ -8,6 +8,7 @@
             "EvenTUMInvitation",
             "EvenTUMHome",
             "EvenTUMOffer",
+            "EvenTUMEvent",
             "Directives",
             'Auth',
             'User'
