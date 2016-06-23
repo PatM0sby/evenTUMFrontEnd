@@ -61,7 +61,7 @@
         $scope.deleteInv = function(inv){
             $http.delete("http://localhost:3000/api/invitations/" + inv._id).success(function(response){
                 console.log(response);
-                $scope.Invitations.pop(inv);
+                $scope.Invitations.splice($scope.Invitations.indexOf(inv),1);
             });
         };
     }

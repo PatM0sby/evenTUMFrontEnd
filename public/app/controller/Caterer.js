@@ -61,7 +61,8 @@
         $scope.deleteCat = function(cat){
             $http.delete("http://localhost:3000/api/caterer/" + cat._id).success(function(response){
                 console.log(response);
-                $scope.Caterer.pop(cat);
+                $scope.Caterer.splice($scope.Caterer.indexOf(cat),1);
+                //$scope.Caterer.pop(cat);
             });
         };
     }

@@ -54,7 +54,7 @@
         $scope.deleteLoc = function(Loc){
             $http.delete(api + "locations/" + Loc._id).success(function(response){
                 console.log(response);
-                $scope.Location.pop(Loc);
+                $scope.Location.splice($scope.Location.indexOf(Loc),1);
             });
         };
     }
