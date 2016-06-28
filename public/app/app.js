@@ -21,9 +21,11 @@
 
         ])
         .constant('BASEURL', 'http://localhost:3000')
-        .config(config);
+        .config(config)
+        .run(run);
 
     config.$inject = ['$routeProvider', '$httpProvider'];
+    run.$inject = ['$rootScope', '$location', 'currUser'];
 
     function config ($routeProvider, $httpProvider) {
         $routeProvider.otherwise({redirectTo: '/'});
@@ -41,4 +43,13 @@
         $httpProvider.interceptors.push('authInterceptor');
 
     }
+
+    function run ($rootScope, $location, currUser) {
+        $rootScope.$on('$routeChangeStart', function (event, next, current) {
+            if (!currUser.getToken() && next.templatUrl !== 'app/templates/home/home.html') {
+                $location.path('/');
+            }
+        });
+    }
+
 })(angular);

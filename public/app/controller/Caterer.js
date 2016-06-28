@@ -24,16 +24,16 @@
     // functionality
     function config ($routeProvider) {
         $routeProvider
-            .when("/Caterer", {
-                templateUrl: "old-app-refernece/templates/Caterer/list.html",
+            .when("/caterer", {
+                templateUrl: "app/templates/caterer/list.html",
                 controller: "CatererListController"
             })
-            .when("/Caterer/new", {
-                templateUrl: "old-app-refernece/templates/Caterer/create.html",
+            .when("/caterer/new", {
+                templateUrl: "app/templates/caterer/create.html",
                 controller: "CatererCreateController"
             })
-            .when("/Caterer/:id/edit", {
-                templateUrl: "old-app-refernece/templates/Caterer/edit.html",
+            .when("/caterer/:id/edit", {
+                templateUrl: "app/templates/caterer/edit.html",
                 controller: "CatererEditController"
         });
     }
@@ -45,7 +45,7 @@
             $http.post("http://localhost:3000/api/caterer", $scope.cat)
                 .success(function(response){
                     console.log(response);
-                    $location.url("/Caterer");
+                    $location.url("/caterer");
                 });
         }
     }
@@ -62,7 +62,7 @@
             $http.delete("http://localhost:3000/api/caterer/" + cat._id).success(function(response){
                 console.log(response);
                 $scope.Caterer.splice($scope.Caterer.indexOf(cat),1);
-                //$scope.Caterer.pop(cat);
+                //$scope.caterer.pop(cat);
             });
         };
     }
@@ -77,7 +77,7 @@
 
         $scope.saveCat = function() {
             $http.put("http://localhost:3000/api/caterer/" + $scope.cat._id, $scope.cat)
-                .success(function(response){ $location.url("/Caterer")});
+                .success(function(response){ $location.url("/caterer")});
         };
     };
 })(angular);

@@ -17,11 +17,15 @@
         <link href="css/style.css" rel="stylesheet">
     </head>
     <body ng-app="EvenTUM" ng-controller="UserCtrl">
+
+        <!-- Navbar directive -->
         <navbar></navbar>
-        <div ng-view></div>
-        <div id="footer">
+
+        <main ng-view></main>
+
+        <footer id="footer">
             &copy; EvenTUM 2016
-        </div>
+        </footer>
 
         <!-- vendor files -->
         <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>

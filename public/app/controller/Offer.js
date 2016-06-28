@@ -16,8 +16,8 @@
     // functionality
     function config ($routeProvider) {
         $routeProvider
-            .when("/Offer", {
-                templateUrl: "old-app-refernece/templates/Offer/offer.html"
+            .when("/offer", {
+                templateUrl: "app/templates/offer/offer.html"
             });
     }
 })(angular);

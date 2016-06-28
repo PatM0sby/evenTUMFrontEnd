@@ -15,16 +15,16 @@
 
     function config ($routeProvider) {
         $routeProvider
-            .when("/Location", {
-                templateUrl: "old-app-refernece/templates/Location/list.html",
+            .when("/location", {
+                templateUrl: "app/templates/location/list.html",
                 controller: "LocationListController"
             })
-            .when("/Location/new", {
-                templateUrl: "old-app-refernece/templates/Location/create.html",
+            .when("/location/new", {
+                templateUrl: "app/templates/location/create.html",
                 controller: "LocationCreateController"
             })
-            .when("/Location/:id/edit", {
-                templateUrl: "old-app-refernece/templates/Location/edit.html",
+            .when("/location/:id/edit", {
+                templateUrl: "app/templates/location/edit.html",
                 controller: "LocationEditController"
             });
     }
@@ -37,7 +37,7 @@
             $http.post(api + "locations", $scope.Loc)
                 .success(function(response){
                     console.log(response);
-                    $location.url("/Location");
+                    $location.url("/location");
                 });
         }
     }
@@ -72,7 +72,7 @@
             $http.put(api + "locations/" + id, $scope.Loc)
                 .success(function(response){
                     console.log(response);
-                    $location.url("/Location")
+                    $location.url("/location")
                 });
         };
     }

@@ -28,6 +28,13 @@ body {
     width: 24%;
 }
 
+.border-top-bottom {
+    border: 1px solid;
+    border-left: none;
+    border-right: none;
+    padding: 1.6rem 0;
+}
+
 #home {
     background-image: url(https://pixabay.com/static/uploads/photo/2015/10/12/15/09/concert-984237_960_720.jpg);
     background-size: cover;
@@ -40,6 +47,15 @@ body {
         left: 0;
 }
 
+#home p {
+    font-size: 1.8rem;
+}
+
+#home .slogan {
+    font-size: 2.4rem;
+    font-weight: bold;
+}
+
 #footer {
     background-color: #ccc;
     line-height: 3em;
@@ -49,19 +65,4 @@ body {
         left: 0;
     text-align: center;
 
-}
-
-#cont {
-    width:700px;
-    height: 200px;
-    float:left;
-    padding:10px;
-    overflow: scroll;
-}
-
-.scroll {
-    overflow: scroll;
-    /*height: 150px;
-    width: 200px;*/
-    padding: 10px;
 }

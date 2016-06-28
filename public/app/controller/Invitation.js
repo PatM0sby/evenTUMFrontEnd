@@ -24,16 +24,16 @@
     // functionality
     function config ($routeProvider) {
         $routeProvider
-            .when("/Invitation", {
-                templateUrl: "old-app-refernece/templates/Invitation/list.html",
+            .when("/invitation", {
+                templateUrl: "app/templates/invitation/list.html",
                 controller: "InvitationListController"
             })
-            .when("/Invitation/new", {
-                templateUrl: "old-app-refernece/templates/Invitation/create.html",
+            .when("/invitation/new", {
+                templateUrl: "app/templates/invitation/create.html",
                 controller: "InvitationCreateController"
             })
-            .when("/Invitation/:id/edit", {
-                templateUrl: "old-app-refernece/templates/Invitation/edit.html",
+            .when("/invitation/:id/edit", {
+                templateUrl: "app/templates/invitation/edit.html",
                 controller: "InvitationEditController"
         });
     }
@@ -47,7 +47,7 @@
             $http.post("http://localhost:3000/api/invitations", $scope.inv)
                 .success(function(response){
                     console.log(response);
-                    $location.url("/Invitation");
+                    $location.url("/invitation");
                 });
         }
     }
@@ -82,7 +82,7 @@
             $http.put("http://localhost:3000/api/invitations/" + id, $scope.inv)
                 .success(function(response){
                     console.log(response);
-                    $location.url("/Invitation")
+                    $location.url("/invitation")
                 });
         };
     }
