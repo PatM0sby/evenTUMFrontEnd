@@ -2,7 +2,8 @@
     "use strict";
     
     angular.module("Directives", [])
-        .directive('alertDialog', alertDialog);
+        .directive('alertDialog', alertDialog)
+        .directive('navbar', navbar);
 
         function alertDialog () {
             return {
@@ -10,10 +11,34 @@
                 scope: {
                     message: '=msg',
                     priority: '=priority',
-                    visible: '=visible'
+                    visible: '=visible',
+                    name: '@name',
+                    selector: '=selector'
+                },
+                link: function (scope, element, attrs) {
+                    scope.$watch('visible', function (n, o) {
+                        if (n && scope.name === scope.selector) {
+                            scope.show = true;
+                        }else{
+                            scope.show = false;
+                        }
+                    });
+
+                    scope.closeDialog = function () {
+                        scope.visible = false;
+
+                    };
                 },
                 replace: true,
                 templateUrl: 'app/templates/Directives/alert.html'
+            };
+        }
+
+        function navbar () {
+            return {
+                restrict: 'E',
+                replace: true,
+                templateUrl: 'app/templates/Directives/navigation.html'
             };
         }
 })(angular);
