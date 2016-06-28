@@ -12,27 +12,39 @@
         this.loggedIn = authService.isAuthed;
         this.logout = authService.deleteToken;
         this.getUser = getUser;
+        this.getToken = getToken;
 
 
         ////////////////
 
-        function register(user, pass) {
+        function register (user, pass) {
             return $http.post(BASEURL + '/signup', {
                 username: user,
                 password: pass
             });
         }
 
-        function login(user, pass) {
+        function login (user, pass) {
             return $http.post(BASEURL + '/login', {
                 username: user,
                 password: pass
             });
         }
 
-        function getUser() {
+        function getUser () {
+            var token = this.getToken();
+            var user = token ? authService.parseJwt(token).user : {};
+            return user;
+        }
+
+        function getToken () {
             var token = authService.getToken();
-            return token ? authService.parseJwt(token).user : {};
+
+            if (!token) {
+                return false;
+            }
+
+            return token;
         }
     }
 
