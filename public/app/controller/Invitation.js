@@ -25,15 +25,15 @@
     function config ($routeProvider) {
         $routeProvider
             .when("/Invitation", {
-                templateUrl: "app/templates/Invitation/list.html",
+                templateUrl: "old-app-refernece/templates/Invitation/list.html",
                 controller: "InvitationListController"
             })
             .when("/Invitation/new", {
-                templateUrl: "app/templates/Invitation/create.html",
+                templateUrl: "old-app-refernece/templates/Invitation/create.html",
                 controller: "InvitationCreateController"
             })
             .when("/Invitation/:id/edit", {
-                templateUrl: "app/templates/Invitation/edit.html",
+                templateUrl: "old-app-refernece/templates/Invitation/edit.html",
                 controller: "InvitationEditController"
         });
     }

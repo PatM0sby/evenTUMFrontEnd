@@ -12,7 +12,7 @@
         return {
             restrict: 'A',
             replace: true,
-            templateUrl: 'app/templates/User/login.html'
+            templateUrl: 'old-app-refernece/templates/User/login.html'
         };
     }
 
@@ -20,7 +20,7 @@
         return {
             restrict: 'A',
             replace: true,
-            templateUrl: 'app/templates/User/register.html'
+            templateUrl: 'old-app-refernece/templates/User/register.html'
         };
     }
 

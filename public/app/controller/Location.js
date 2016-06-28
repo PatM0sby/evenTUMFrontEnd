@@ -16,15 +16,15 @@
     function config ($routeProvider) {
         $routeProvider
             .when("/Location", {
-                templateUrl: "app/templates/Location/list.html",
+                templateUrl: "old-app-refernece/templates/Location/list.html",
                 controller: "LocationListController"
             })
             .when("/Location/new", {
-                templateUrl: "app/templates/Location/create.html",
+                templateUrl: "old-app-refernece/templates/Location/create.html",
                 controller: "LocationCreateController"
             })
             .when("/Location/:id/edit", {
-                templateUrl: "app/templates/Location/edit.html",
+                templateUrl: "old-app-refernece/templates/Location/edit.html",
                 controller: "LocationEditController"
             });
     }

@@ -25,15 +25,15 @@
     function config ($routeProvider) {
         $routeProvider
             .when("/Caterer", {
-                templateUrl: "app/templates/Caterer/list.html",
+                templateUrl: "old-app-refernece/templates/Caterer/list.html",
                 controller: "CatererListController"
             })
             .when("/Caterer/new", {
-                templateUrl: "app/templates/Caterer/create.html",
+                templateUrl: "old-app-refernece/templates/Caterer/create.html",
                 controller: "CatererCreateController"
             })
             .when("/Caterer/:id/edit", {
-                templateUrl: "app/templates/Caterer/edit.html",
+                templateUrl: "old-app-refernece/templates/Caterer/edit.html",
                 controller: "CatererEditController"
         });
     }

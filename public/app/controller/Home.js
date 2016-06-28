@@ -23,7 +23,7 @@
     function config ($routeProvider) {
         $routeProvider
             .when("/", {
-                templateUrl: "app/templates/User/home.html"
+                templateUrl: "old-app-refernece/templates/User/home.html"
             });
     }
 

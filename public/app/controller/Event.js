@@ -17,7 +17,7 @@
     function config ($routeProvider) {
         $routeProvider
             .when("/Event", {
-                templateUrl: "app/templates/Event/event.html"
+                templateUrl: "old-app-refernece/templates/Event/event.html"
             });
     }
 })(angular);

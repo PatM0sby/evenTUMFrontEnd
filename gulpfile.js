@@ -39,11 +39,11 @@ var s_filter_i, js_filter, js_filter_i;
 gulp.task('sass', function () {
     return gulp.src([
         //usually only screen.scss
-        'app/sass/**/*.scss',
+        'old-app-refernece/sass/**/*.scss',
         // no partials
-        "!app/sass/**/_*.scss",
+        "!old-app-refernece/sass/**/_*.scss",
         //no libs
-        '!app/sass/libs/**/*'])
+        '!old-app-refernece/sass/libs/**/*'])
         .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(sass({
@@ -81,23 +81,23 @@ gulp.task('frontend-libs-copy', function() {
     return merge(other_libs, js_libs);
 });
 
-gulp.task('app-js', function () {
+gulp.task('old-app-refernece-js', function () {
     //first list files that define new modules. the module definitions must be at the beginning
-    return gulp.src(['app/ng/**/app.js', 'app/ng/components/movies/movies-module.js', 'app/ng/**/*.js'])
+    return gulp.src(['old-app-refernece/ng/**/old-app-refernece.js', 'old-app-refernece/ng/components/movies/movies-module.js', 'old-app-refernece/ng/**/*.js'])
         .pipe(plumber())
         /*
         suspend minification, since angular cannot handle sourcemaps in errors https://github.com/angular/angular.js/issues/5217#issuecomment-50993513
          */
         //.pipe(sourcemaps.init())
-        .pipe(concat('app.js'))
+        .pipe(concat('old-app-refernece.js'))
         .pipe(ngAnnotate())
         //.pipe(uglify())
         //.pipe(sourcemaps.write())
         .pipe(gulp.dest('./public/js'))
 })
 
-gulp.task('app-templates', function () {
-    return gulp.src('app/ng/**/*.html')
+gulp.task('old-app-refernece-templates', function () {
+    return gulp.src('old-app-refernece/ng/**/*.html')
         .pipe(plumber())
         .pipe(templateCache('templates.js', {standalone: true}))
         .pipe(sourcemaps.init())
@@ -106,20 +106,20 @@ gulp.task('app-templates', function () {
         .pipe(gulp.dest('./public/js'));
 });
 
-var MAIN_TASKS = ['app-js', 'app-templates', 'frontend-libs-copy', 'sass'];
+var MAIN_TASKS = ['old-app-refernece-js', 'old-app-refernece-templates', 'frontend-libs-copy', 'sass'];
 
 gulp.task('watch', MAIN_TASKS, function () {
-    gulp.watch('app/ng/**/*.js', ['app-js']);
-    gulp.watch('app/ng/**/*.html', [ 'app-templates']);
+    gulp.watch('old-app-refernece/ng/**/*.js', ['old-app-refernece-js']);
+    gulp.watch('old-app-refernece/ng/**/*.html', [ 'old-app-refernece-templates']);
     gulp.watch('bower.json', [ 'frontend-libs-copy']);
-    gulp.watch(['app/sass/**/*.scss', 'bower.json'], ['sass']);
+    gulp.watch(['old-app-refernece/sass/**/*.scss', 'bower.json'], ['sass']);
 })
 
 gulp.task('install', MAIN_TASKS);
 
 gulp.task('clean', function () {
     return gulp.src([
-                        'public/js/app.js',
+                        'public/js/old-app-refernece.js',
                         'public/js/templates.js',
                         'public/css',
                         'public/libs'], {read: false})
