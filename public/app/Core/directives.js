@@ -30,7 +30,7 @@
                     };
                 },
                 replace: true,
-                templateUrl: 'old-app-refernece/templates/Directives/alert.html'
+                templateUrl: 'app/templates/directives/alert.html'
             };
         }
 
@@ -38,7 +38,7 @@
             return {
                 restrict: 'E',
                 replace: true,
-                templateUrl: 'old-app-refernece/templates/Directives/navigation.html'
+                templateUrl: 'app/templates/directives/navigation.html'
             };
         }
 })(angular);

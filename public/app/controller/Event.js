@@ -15,7 +15,7 @@
 
     // dependencies
     config.$inject = ["$routeProvider"];
-    EventListCtrl.$inject = ['$scope'];
+    EventListCtrl.$inject = ['$scope', 'TestDataService'];
     EventCtrl.$inject = ['$scope'];
     EventEditCtrl.$inject = ['$scope'];
 
@@ -40,29 +40,10 @@
             });
     }
     
-    function EventListCtrl ($scope) {
-        $scope.events = [
-            {
-                name: 'erster Event',
-                date: '29.09.2019',
-                id: 992883
-            },
-            {
-                name: '2. Event',
-                date: '29.09.2019',
-                id: 992883
-            },
-            {
-                name: '3. Event',
-                date: '29.09.2019',
-                id: 992883
-            },
-            {
-                name: '4. Event',
-                date: '29.09.2019',
-                id: 992883
-            }
-        ];
+    function EventListCtrl ($scope, TestDataService) {
+        TestDataService.get('events.json', function (data) {
+            $scope.events = data.events;
+        });
     }
     
     function EventCtrl ($scope) {}

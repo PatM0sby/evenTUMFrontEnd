@@ -4,11 +4,13 @@
     angular.module ('EvenTUM', [
             // vendor
             'ngRoute',
+            'ngResource',
 
             // core
             'Directives',
             'Auth',
             'User',
+            'TestData',
 
             // controller
             'EvenTUMUser',
