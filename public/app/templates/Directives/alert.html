@@ -1,5 +1,5 @@
-<div class="alert alert-{{priority}} alert-dismissible" role="alert" ng-show="visible">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+<div class="alert alert-{{priority}} alert-dismissible" role="alert" ng-show="show">
+    <button type="button" class="close" ng-click="closeDialog()" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
     {{message}}

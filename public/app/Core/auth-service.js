@@ -23,6 +23,7 @@
         }
 
         function deleteToken() {
+            console.log('Logout');
             $window.localStorage.removeItem('jwtToken');
         }
 

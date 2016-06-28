@@ -1,22 +1,29 @@
 (function (angular) {
     "use strict";
 
-    angular.module ("EvenTUM", [
-            "ngRoute",
-            "EvenTUMLocation",
-            "EvenTUMCaterer",
-            "EvenTUMInvitation",
-            "EvenTUMHome",
-            "EvenTUMOffer",
-            "EvenTUMEvent",
-            "Directives",
+    angular.module ('EvenTUM', [
+            // vendor
+            'ngRoute',
+
+            // core
+            'Directives',
             'Auth',
-            'User'
+            'User',
+
+            // controller
+            'EvenTUMUser',
+            'EvenTUMLocation',
+            'EvenTUMCaterer',
+            'EvenTUMInvitation',
+            'EvenTUMHome',
+            'EvenTUMOffer',
+            'EvenTUMEvent'
+
         ])
-        .constant("BASEURL", "http://localhost:3000")
+        .constant('BASEURL', 'http://localhost:3000')
         .config(config);
 
-    config.$inject = ["$routeProvider", '$httpProvider'];
+    config.$inject = ['$routeProvider', '$httpProvider'];
 
     function config ($routeProvider, $httpProvider) {
         $routeProvider.otherwise({redirectTo: '/'});
@@ -24,7 +31,7 @@
         /*angular.extend($resourceProvider.defaults.actions, {
 
             update: {
-                method: "PUT"
+                method: 'PUT'
             }
 
         });*/

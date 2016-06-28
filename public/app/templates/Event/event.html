@@ -1,16 +1,37 @@
-<nav style="float: left; margin: 0 auto;">
+<div class="container" ng-init="events = [
+    {
+        name: 'erster Event',
+        date: '29.09.2019',
+        id: 992883
+    },
+    {
+        name: '2. Event',
+        date: '29.09.2019',
+        id: 992883
+    },
+    {
+        name: '3. Event',
+        date: '29.09.2019',
+        id: 992883
+    },
+    {
+        name: '4. Event',
+        date: '29.09.2019',
+        id: 992883
+    }
+] ">
+    <h2>Your events <a href="#" class="btn btn-success pull-right" role="button">Create new event</a></h2>
+    <div class="row-flex">
 
-    <link href="css/style.css" rel="stylesheet">
-
-        <h3>Location</h3>
-        <div class="scroll" id="cont" ng-include="'app/templates/Location/table.html'" ng-controller="LocationListController"></div>
-
-        <h3>Caterer</h3>
-        <div class="scroll" id="cont" ng-include="'app/templates/Caterer/table.html'" ng-controller="CatererListController"></div>
-
-        <h3>Invitation</h3>
-        <div class="scroll" id="cont" ng-include="'app/templates/Invitation/table.html'" ng-controller="InvitationListController"></div>
-
-
-
-</nav>
+        <div class="thumbnail event-card" ng-repeat="event in events">
+            <div class="caption">
+                <h3>{{event.name}}</h3>
+                <p class="event-meta">{{event.date}}</p>
+                <footer>
+                    <a href="#/Event/{{event.id}}" class="btn btn-default" role="button">Show</a>
+                    <a class="btn btn-danger" role="button">Delete</a> //@TODO  ng-click: delete this event
+                </footer>
+            </div>
+        </div>
+    </div>
+</div>

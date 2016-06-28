@@ -39,7 +39,9 @@
     }
 
     function InvitationCreateController ($scope, $http, $location, api) {
-        $scope.inv = {};
+        $scope.inv = {
+            token: 'bla'
+        };
 
         $scope.createInv = function(){
             $http.post("http://localhost:3000/api/invitations", $scope.inv)
@@ -67,7 +69,9 @@
     }
 
     function InvitationEditController ($scope, $http, $location, $routeParams, api) {
-        $scope.inv = {};
+        $scope.inv = {
+            token: 'bla'
+        };
         var id = $routeParams.id;
 
         $http.get("http://localhost:3000/api/invitations/" + id).success(function (response) {
