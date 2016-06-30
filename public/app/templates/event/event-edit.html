@@ -1,0 +1,55 @@
+<div class="container">
+    <h2>create new event</h2>
+    <div alert-dialog
+         msg="alertDialog.msg"
+         priority="alertDialog.priority"
+         visible="alertDialog.visible"
+         name="form"
+         selector="alertDialog.selector"></div>
+    <form ng-submit="save()">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text"
+                   class="form-control"
+                   id="name"
+                   placeholder="Eventname"
+                   ng-model="event.name"
+                   required>
+        </div>
+        <div class="form-group">
+            <label for="date">Date</label>
+            <input type="date"
+                   class="form-control"
+                   id="date"
+                   placeholder="Date"
+                   ng-model="event.date"
+                   required>
+        </div>
+        <div class="form-group">
+            <label for="memberCount">Number of participants</label>
+            <input type="number"
+                   class="form-control"
+                   id="memberCount"
+                   placeholder="number of participants"
+                   min="1"
+                   ng-model="event.memberCount"
+                   required>
+        </div>
+        <div class="form-group">
+            <label for="location">Location</label>
+            <select id="location" ng-model="event.location">
+                <option value="no selected" ng-selected="!exist">select a location</option>
+                <option ng-value="loc._id" ng-repeat="loc in locations">{{loc.name}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="caterer">Caterer</label>
+            <select id="caterer" ng-model="event.caterer">
+                <option value="no selected" ng-selected="!exist">select a caterer</option>
+                <option ng-value="cat._id" ng-repeat="cat in caterer">{{cat.name}}</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+</div>

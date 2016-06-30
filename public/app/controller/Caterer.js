@@ -43,13 +43,12 @@
         $scope.cat = {};
 
         $scope.createCat = function () {
-            var callback = function (res) {
-                console.log(res);
+            Caterer.create('caterer', callback, $scope.cat)
+                .then(function (res) {
+                    console.log(res);
 
-                $location.url("/caterer");
-            };
-
-            Caterer.create('caterer', callback, $scope.cat);
+                    $location.url("/caterer");
+                });
         }
     }
 
@@ -57,18 +56,19 @@
         var Caterer = DataService;
         $scope.message = "Possible caterer";
 
-        Caterer.get('caterer', getSuccess);
+        Caterer.get('caterer')
+            .then(function (data) {
+                $scope.Caterer = data;
+            });
 
-        function getSuccess (data) {
-            $scope.Caterer = data;
-        }
         
         $scope.deleteCat = function (cat) {
-            Caterer.delete('caterer/' + cat._id, function (res) {
-                console.log(res);
+            Caterer.delete('caterer/' + cat._id)
+                .then(function (res) {
+                    console.log(res);
 
-                $scope.Caterer.splice($scope.Caterer.indexOf(cat),1);
-            });
+                    $scope.Caterer.splice($scope.Caterer.indexOf(cat), 1);
+                });
         };
     }
 
@@ -77,18 +77,18 @@
         var Caterer = DataService,
             id = $routeParams.id;
 
-        Caterer.get('caterer/' + id, function (res) {
-            $scope.cat = res;
-        });
+        Caterer.get('caterer/' + id)
+            .then(function (res) {
+                $scope.cat = res;
+            });
 
         $scope.saveCat = function () {
-            var callback = function (res) {
-                console.log(res);
+            Caterer.update('caterer/' + $scope.cat._id, $scope.cat)
+                .then(function (res) {
+                    console.log(res);
 
-                $location.url("/caterer");
-            };
-
-            Caterer.update('caterer/' + $scope.cat._id, callback, $scope.cat);
+                    $location.url("/caterer");
+                });
         };
     }
 })(angular);

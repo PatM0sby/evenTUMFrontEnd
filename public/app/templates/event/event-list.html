@@ -1,17 +1,16 @@
 <!-- ng-init only for demonstration because event is undefined-->
 
 <div class="container" >
-    <h2>Your events <a href="#" class="btn btn-success pull-right" role="button">Create new event</a></h2>
+    <h2>Your events <a href="#/event/create" class="btn btn-success pull-right" role="button">Create new event</a></h2>
     <div class="row-flex">
 
-        <div class="thumbnail event-card" ng-repeat="event in events">
+        <div class="thumbnail event-card" ng-repeat="event in events track by $index">
             <div class="caption">
                 <h3>{{event.name}}</h3>
                 <p class="event-meta">{{event.date}}</p>
                 <footer>
-                    <a href="#/Event/{{event.id}}" class="btn btn-default" role="button">Show</a>
-                    <a class="btn btn-danger" role="button">Delete</a>
-                    <!--@TODO  ng-click: delete this event -->
+                    <a href="#/Event/{{$index}}" class="btn btn-default" role="button">Show</a>
+                    <a class="btn btn-danger" role="button" ng-click="deleteEvent($index)">Delete</a>
                 </footer>
             </div>
         </div>
