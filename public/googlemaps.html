@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAwiRKZi_n0udwuP4Ef01c19tP_Tf9r28o&signed_in=true&callback=initMap"
+            type="text/javascript"></script>
+
+</head>
+
+<body>
+<div id="map" style="width: 800px; height: 480px;"></div>
+
+<script type="text/javascript">
+    var locations = [
+        ['Andi', 48.2519230, 11.6680880],
+        ['Party', 48.2621140, 11.6780990],
+        ['Penner', 48.2621140, 11.6680990],
+        ['Pat', 48.2621140, 11.6480990],
+        ['Pussy', 48.2621140, 11.6580990],
+        ['Flo ', 48.2722350, 11.6781100],
+        ['Fluch ', 48.2722350, 11.6881100],
+        ['Fotze ', 48.2722350, 11.6581100],
+        ['Fehler ', 48.2722350, 11.6481100],
+    ];
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 12,
+        center: new google.maps.LatLng(48.135125, 11.581981),
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+
+    var infowindow = new google.maps.InfoWindow();
+
+    var marker, i;
+
+    for (i = 0; i < locations.length; i++) {
+        marker = new google.maps.Marker({
+            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+            map: map
+        });
+
+        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+            return function() {
+                infowindow.setContent(locations[i][0]);
+                infowindow.open(map, marker);
+            }
+        })(marker, i));
+    }
+    // NOTE: This uses cross-domain XHR, and may not work on older browsers.
+        map.data.loadGeoJson('https://storage.googleapis.com/maps-devrel/google.json');
+
+</script>
+</body>
+</html>
+
+
+
