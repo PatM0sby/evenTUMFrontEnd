@@ -2,7 +2,7 @@
     "use strict";
 
     angular.module("EvenTUMLocation", ["ngRoute"])
-        .constant("API", "http://localhost:3000/api/")
+        
         .config(config)
         .controller("LocationCreateController", LocationCreateController)
         .controller("LocationEditController", LocationEditController)

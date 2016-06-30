@@ -10,6 +10,7 @@
             'Directives',
             'Auth',
             'User',
+            'Data',
             'TestData',
 
             // controller
@@ -23,6 +24,7 @@
 
         ])
         .constant('BASEURL', 'http://localhost:3000')
+        .constant("API", "http://localhost:3000/api/")
         .config(config)
         .run(run);
 

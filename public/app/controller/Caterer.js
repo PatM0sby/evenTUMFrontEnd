@@ -17,9 +17,9 @@
 
     // dependencies
     config.$inject = ["$routeProvider"];
-    CatererCreateController.$inject = ["$scope", "$http", "$location", "API"];
-    CatererListController.$inject = ["$scope", "$http", "API"];
-    CatererEditController.$inject = ["$scope", "$http", "$location", "$routeParams", "API"];
+    CatererCreateController.$inject = ["$scope", "$location", "DataService"];
+    CatererListController.$inject = ["$scope", "DataService"];
+    CatererEditController.$inject = ["$scope", "$location", "$routeParams", "DataService"];
 
     // functionality
     function config ($routeProvider) {
@@ -38,46 +38,57 @@
         });
     }
 
-    function CatererCreateController ($scope, $http, $location, api) {
+    function CatererCreateController ($scope, $location, DataService) {
+        var Caterer = DataService;
         $scope.cat = {};
 
-        $scope.createCat = function(){
-            $http.post("http://localhost:3000/api/caterer", $scope.cat)
-                .success(function(response){
-                    console.log(response);
-                    $location.url("/caterer");
-                });
+        $scope.createCat = function () {
+            var callback = function (res) {
+                console.log(res);
+
+                $location.url("/caterer");
+            };
+
+            Caterer.create('caterer', callback, $scope.cat);
         }
     }
 
-    function CatererListController ($scope, $http, api) {
+    function CatererListController ($scope, DataService) {
+        var Caterer = DataService;
         $scope.message = "Possible caterer";
 
-        $http.get("http://localhost:3000/api/caterer").success(function (response) {
-            $scope.Caterer = response;
-        }).error(function(err){
-            $scope.error = err;
-        });
-        $scope.deleteCat = function(cat){
-            $http.delete("http://localhost:3000/api/caterer/" + cat._id).success(function(response){
-                console.log(response);
+        Caterer.get('caterer', getSuccess);
+
+        function getSuccess (data) {
+            $scope.Caterer = data;
+        }
+        
+        $scope.deleteCat = function (cat) {
+            Caterer.delete('caterer/' + cat._id, function (res) {
+                console.log(res);
+
                 $scope.Caterer.splice($scope.Caterer.indexOf(cat),1);
-                //$scope.caterer.pop(cat);
             });
         };
     }
 
-    function CatererEditController ($scope, $http, $location, $routeParams, api) {
+    function CatererEditController ($scope, $location, $routeParams, DataService) {
         $scope.cat = {};
-        var id = $routeParams.id;
+        var Caterer = DataService,
+            id = $routeParams.id;
 
-        $http.get("http://localhost:3000/api/caterer/" + id).success(function (response) {
-            $scope.cat = response;
+        Caterer.get('caterer/' + id, function (res) {
+            $scope.cat = res;
         });
 
-        $scope.saveCat = function() {
-            $http.put("http://localhost:3000/api/caterer/" + $scope.cat._id, $scope.cat)
-                .success(function(response){ $location.url("/caterer")});
+        $scope.saveCat = function () {
+            var callback = function (res) {
+                console.log(res);
+
+                $location.url("/caterer");
+            };
+
+            Caterer.update('caterer/' + $scope.cat._id, callback, $scope.cat);
         };
-    };
+    }
 })(angular);

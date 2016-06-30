@@ -1,0 +1,27 @@
+{
+  "events": [
+    {
+      "name": "erster Event",
+      "date": "29.09.2019",
+      "id": 992883,
+      "location_id": "idd",
+      "invitation_id": "idd",
+      "caterer_id": "idd"
+    },
+    {
+      "name": "2. Event",
+      "date": "29.09.2019",
+      "id": 992883
+    },
+    {
+      "name": "3. Event",
+      "date": "29.09.2019",
+      "id": 992883
+    },
+    {
+      "name": "4. Event",
+      "date": "29.09.2019",
+      "id": 992883
+    }
+  ]
+}

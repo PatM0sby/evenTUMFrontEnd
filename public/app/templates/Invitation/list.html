@@ -26,7 +26,7 @@
                 <td>{{inv.salutation}}</td>
                 <td>{{inv.text}}</td>
                 <td>{{inv.greeting}}</td>
-                <td><a href="#/Invitation/{{inv._id}}/edit" class="btn btn-default btn-sm">Edit</a></td>
+                <td><a href="#/invitation/{{inv._id}}/edit" class="btn btn-default btn-sm">Edit</a></td>
                 <td><a href="" ng-click="deleteInv(inv)" class="btn btn-danger btn-sm">Delete</a></td>
             </tr>
             </tbody>
@@ -36,4 +36,4 @@
 <ul>
    <!-- <li ng-repeat = "inv in Invitations">{{inv.name}}</li> -->
 </ul>
-<a href = "#/Invitation/new" class = "btn btn-default">Add new Invitation</a>
+<a href = "#/invitation/new" class = "btn btn-default">Add new Invitation</a>
