@@ -48,20 +48,33 @@
     // NOTE: This uses cross-domain XHR, and may not work on older browsers.
         map.data.loadGeoJson('https://storage.googleapis.com/maps-devrel/google.json');
 
-    var markers=[]
 
+
+    //NEW FUNCTIONALITY
+
+    //dummy location for testing TODO $http get location or $scope.Locations
+    var Locations=[{"name":"test","latitude": "48.2621140","longitude": "11.6280990"},{"name":"testikel","latitude": "48.2721140","longitude": "11.6180990"}];
+
+
+
+    console.log(Locations.length);
+
+    var markers=[]
 
     //to be used with real Locations straight from the API
     Locations.forEach(function(element){
+    console.log(element.latitude);
 
-        var myLatlng = {lat: element.latitude, lng: element.longitude};
         var marker=new google.maps.Marker({
-            position: myLatlng,
+            position: new google.maps.LatLng(element.latitude, element.longitude),
             map: map,
             title: element.name
         });
 
         markers.push(marker);
+        //TODO add infobox with Location.name & Location.description along a button with ng-onclick "select as location" functionality
+
+
     })
 </script>
 </body>
