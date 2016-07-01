@@ -62,7 +62,19 @@
 
     }
     
-    function EventCtrl ($scope) {}
+    function EventCtrl ($scope) {
+        $scope.invitees = [{}];
+
+        $scope.addInvitee = function () {
+            $scope.invitees.push({});
+        };
+
+        $scope.deleteInvitee = function (id) {
+            $scope.invitees.splice(id, 1);
+            console.log($scope.invitees);
+
+        };
+    }
     
     function EventEditCtrl ($scope, TestDataService, $location, DataService) {
         $scope.event = {};

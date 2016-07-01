@@ -3,6 +3,14 @@ body {
     padding-bottom: 20px;
 }
 
+img {
+    max-width: 100%;
+}
+
+main {
+    margin-bottom: 6rem;
+}
+
 .navbar-inverse .navbar-nav>li>a.btn {
     color: white;
     padding: 10px 15px;
@@ -34,6 +42,17 @@ body {
     border-right: none;
     padding: 1.6rem 0;
 }
+
+.no-padding {
+    padding: 0;
+    overflow: hidden;
+}
+
+.panel-body .table > tbody > tr > th,
+.panel-body .table > tbody > tr > td {
+    border: none;
+}
+
 
 #home {
     background-image: url(https://pixabay.com/static/uploads/photo/2015/10/12/15/09/concert-984237_960_720.jpg);

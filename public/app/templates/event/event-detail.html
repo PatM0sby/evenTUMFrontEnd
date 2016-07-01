@@ -1,0 +1,102 @@
+<div class="container event">
+    <header>
+        <h2>Event bla <a href="#/event/edit/90" class="btn btn-warning pull-right">Edit</a></h2>
+        <p class="event__meta">
+            <span class="event__date">Date: 29.31.1233</span>
+            <span class="event__members">Members: 89</span>
+        </p>
+    </header>
+    <div class="row">
+        <section class="col-md-6 event__location">
+            <aside class="panel panel-default">
+                <header class="panel-heading">Location</header>
+                <div class="panel-body no-padding">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th class="text-center">Name:</th>
+                                <td>Olympiastadion</td>
+                            </tr>
+                            <tr>
+                                <th class="text-center">Name:</th>
+                                <td>Olympiastadion Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur eos facere ipsam labore minus obcaecati sint. Accusantium nemo odio quasi.</td>
+                            </tr>
+                            <tr>
+                                <th class="text-center">Name:</th>
+                                <td>Olympiastadion</td>
+                            </tr>
+                            <tr>
+                                <th class="text-center">Name:</th>
+                                <td>Olympiastadion</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <footer class="panel-footer no-padding">
+                    <img src="//fillmurray.com/720/480">
+                </footer>
+            </aside>
+        </section>
+        <section class="col-md-6 event__caterer">
+            <aside class="panel panel-default">
+                <header class="panel-heading">Caterer</header>
+                <div class="panel-body">
+                    <table class="table">
+                        <tbody>
+                            <tr>
+                                <th>Name:</th>
+                                <td>Olympiastadion</td>
+                            </tr>
+                            <tr>
+                                <th>Name:</th>
+                                <td>Olympiastadion</td>
+                            </tr>
+                            <tr>
+                                <th>Name:</th>
+                                <td>Olympiastadion</td>
+                            </tr>
+                            <tr>
+                                <th>Name:</th>
+                                <td>Olympiastadion</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </aside>
+        </section>
+    </div>
+    <div class="row">
+        <form>
+            <div class="col-md-5">
+                <h3>List of invitees</h3>
+                <div class="row" ng-repeat="person in invitees track by $index">
+                    <div class="col-sm-5">
+                        <div class="form-group">
+                            <input type="text"
+                                   class="form-control"
+                                   id="name"
+                                   placeholder="Name"
+                                   ng-model="person.name"
+                                   required>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <input type="email"
+                                   class="form-control"
+                                   id="email"
+                                   placeholder="Email"
+                                   ng-model="person.email"
+                                   required>
+                        </div>
+                    </div>
+                    <div class="col-sm-1">
+                        <button class="btn btn-secondary" ng-click="deleteInvitee($index)">&times;</button>
+                    </div>
+                </div>
+                <button class="btn btn-secondary" ng-click="addInvitee()">add one</button>
+            </div>
+            <div class="col-md-7"></div>
+        </form>
+    </div>
+</div>
