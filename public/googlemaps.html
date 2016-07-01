@@ -48,6 +48,21 @@
     // NOTE: This uses cross-domain XHR, and may not work on older browsers.
         map.data.loadGeoJson('https://storage.googleapis.com/maps-devrel/google.json');
 
+    var markers=[]
+
+
+    //to be used with real Locations straight from the API
+    Locations.forEach(function(element){
+
+        var myLatlng = {lat: element.latitude, lng: element.longitude};
+        var marker=new google.maps.Marker({
+            position: myLatlng,
+            map: map,
+            title: element.name
+        });
+
+        markers.push(marker);
+    })
 </script>
 </body>
 </html>
