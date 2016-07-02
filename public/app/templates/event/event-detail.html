@@ -1,6 +1,6 @@
 <div class="container event">
     <header>
-        <h2>Event bla <a href="#/event/edit/90" class="btn btn-warning pull-right">Edit</a></h2>
+        <h2>{{event.name}}<a href="#/event/edit/{{event._id}}" class="btn btn-warning pull-right">Edit</a></h2>
         <p class="event__meta">
             <span class="event__date">Date: {{event.date | date: 'd. MMM yyyy, H:mm'}}</span>
             <span class="event__members">Members: {{event.memberCount}}</span>

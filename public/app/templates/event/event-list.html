@@ -9,8 +9,8 @@
                 <h3>{{event.name}}</h3>
                 <p class="event-meta">{{event.date}}</p>
                 <footer>
-                    <a href="#/Event/{{$index}}" class="btn btn-default" role="button">Show</a>
-                    <a class="btn btn-danger" role="button" ng-click="deleteEvent($index)">Delete</a>
+                    <a href="#/event/{{event._id}}" class="btn btn-default" role="button">Show</a>
+                    <a class="btn btn-danger" role="button" ng-click="deleteEvent(event._id)">Delete</a>
                 </footer>
             </div>
         </div>

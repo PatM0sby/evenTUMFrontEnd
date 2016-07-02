@@ -15,9 +15,9 @@
 
     // dependencies
     config.$inject = ["$routeProvider"];
-    EventListCtrl.$inject = ['$scope', 'TestDataService'];
-    EventCtrl.$inject = ['$scope'];
-    EventEditCtrl.$inject = ['$scope', 'TestDataService', '$location', 'DataService'];
+    EventListCtrl.$inject = ['$scope', 'DataService'];
+    EventCtrl.$inject = ['$scope', '$routeParams', 'DataService'];
+    EventEditCtrl.$inject = ['$scope', '$routeParams', '$location', 'DataService', 'currUser'];
 
     // functionality
     function config ($routeProvider) {
@@ -30,30 +30,33 @@
                 templateUrl: 'app/templates/event/event-edit.html',
                 controller: 'EventEditCtrl'
             })
+            .when('/event/edit/:id', {
+                templateUrl: 'app/templates/event/event-edit.html',
+                controller: 'EventEditCtrl'
+            })
             .when('/event/:id', {
                 templateUrl: "app/templates/event/event-detail.html",
                 controller: 'EventCtrl'
-            })
-            .when('/event/:id/edit', {
-                templateUrl: 'app/templates/event/event-edit.html',
-                controller: 'EventEditCtrl'
             });
     }
     
-    function EventListCtrl ($scope, TestDataService) {
-        $scope.events = TestDataService.get('events.json', {clear: false, subObj: 'events'});
-        $scope.events.then(function (result) {
-            $scope.events = result;
-        });
+    function EventListCtrl ($scope, DataService) {
+        var Events = new DataService('events');
+
+        Events.get()
+            .then(function (res) {
+                $scope.events = res;
+                console.log(res);
+            });
 
         $scope.$watch('events', function (n, o) {
 
-            TestDataService.save('events.json', n);
+            //TestDataService.save('events.json', n);
 
         }, true);
 
         $scope.deleteEvent = function (id) {
-            TestDataService.delete('events.json', id)
+            Events.delete(id)
                 .then(function (res) {
                     console.log(res);
                     $scope.events = res;
@@ -62,33 +65,31 @@
 
     }
     
-    function EventCtrl ($scope) {
+    function EventCtrl ($scope, $routeParams, DataService) {
+        var Event = new DataService('events/' + $routeParams.id);
+
+        Event.get()
+            .then(function (res) {
+                var Location = new DataService('locations/' + res.location);
+                var Caterer = new DataService('caterer/' + res.caterer);
+
+                Location.get()
+                    .then(function (loc) {
+                        res.loc = loc;
+                    });
+
+                Caterer.get()
+                    .then(function (cat) {
+                        res.cat = cat;
+                    });
+
+                $scope.event = res;
+
+
+            });
+
+
         $scope.invitees = [{}];
-        $scope.event = {
-            name: 'Tester',
-            date: 1467449245000,
-            memberCount: 20,
-            loc: {
-                name: 'Blablabla',
-                pic: '//fillmurray.com/200/100',
-                description: 'Beschreibung bla hjashdjahsdjhaksdjaksjhdja',
-                address: 'kasjdka jdaksjd kjasdkj',
-                capacity: 20,
-                price: 20,
-                langlon: '48.2524454,11.655653,15'
-            },
-            cat: {
-                name: 'schlag mich tod',
-                pic: '//fillmurray.com/200/100',
-                description: 'Das ist eine Beschreibung',
-                pricePerPerson: 20,
-                kitchen: 'italian',
-                selection: 'irgendwas',
-                vein: 'blaa'
-            }
-
-
-        };
 
         $scope.addInvitee = function () {
             $scope.invitees.push({});
@@ -101,23 +102,44 @@
         };
     }
     
-    function EventEditCtrl ($scope, TestDataService, $location, DataService) {
-        $scope.event = {};
-        $scope.events = TestDataService.get('events.json', {clear: false, subObj: 'events'});
+    function EventEditCtrl ($scope, $routeParams, $location, DataService, currUser) {
+        var saveMethod, eventPath = $routeParams.id ? 'events/' + $routeParams.id : 'events';
+
+        var Event = new DataService(eventPath);
+        var Locations = new DataService('locations');
+        var Caterers = new DataService('caterer');
+
+        Locations.get()
+            .then(function (res) {
+                $scope.locations = res;
+            });
+        
+        Caterers.get()
+            .then(function (res) {
+                $scope.caterers = res;
+            });
+
         $scope.exist = false;
 
-        var locGet = new DataService();
-            locGet.get('locations')
+        if ($routeParams.id) {
+            Event.get()
                 .then(function (res) {
-                    $scope.locations = res;
+
+                    console.log(res);
+                    $scope.event = res;
                 });
 
-        var catGet = new DataService();
-            catGet.get('caterer')
-                .then(function (res) {
-                    $scope.caterer = res;
-                });
-        
+            $scope.exist = true;
+
+            saveMethod = 'update';
+        } else {
+            $scope.event = {
+                token: currUser.getToken()
+            };
+
+            saveMethod = 'create';
+        }
+
         $scope.save = function () {
             console.log($scope.event);
             $scope.alertDialog = {visible: false};
@@ -137,18 +159,14 @@
                     selector: 'form'
                 };
             } else {
-                
-                $scope.events.then(function (result) {
-                    $scope.events = result;
-
-                    $scope.events.push($scope.event);
-
-                    TestDataService.save('events.json', $scope.events)
-                        .then(function (res) {
-                            console.log(res);
-                            $location.path('/event');
-                        });
-                });
+                Event[saveMethod]($scope.event)
+                    .then(function (res) {
+                        console.log(res);
+                        $location.path('event');
+                    })
+                    .catch(function (err) {
+                        console.log(err);
+                    });
             }
         };
 

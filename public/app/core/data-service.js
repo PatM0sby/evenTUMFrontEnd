@@ -8,10 +8,11 @@
 
 
     function DataService ($http, api, currUser, $q) {
-        function service () {
+        function service (path) {
 
             var deferred = $q.defer();
 
+            this.url = api + path;
             this.get = getData;
             this.create = createData;
             this.update = updateData;
@@ -31,11 +32,10 @@
                 return {};
             };
 
-            function getData(path) {
-                var config = getAuth(),
-                    url = api + path;
+            function getData() {
+                var config = getAuth();
 
-                $http.get(url, config)
+                $http.get(this.url, config)
                     .success(function (response) {
                         deferred.resolve(response);
                     })
@@ -46,17 +46,17 @@
                 return deferred.promise;
             }
 
-            function createData(path, data) {
-                var config = getAuth(),
-                    url = api + path;
+            function createData(data) {
+                var config = getAuth();
 
                 if (!data) {
                     deferred.reject('no data set');
                     return deferred.promise;
                 }
 
-                $http.post(url, data, config)
+                $http.post(this.url, data, config)
                     .success(function (response) {
+                        console.log('save');
                         deferred.resolve(response);
                     })
                     .error(function (error) {
@@ -66,16 +66,15 @@
                 return deferred.promise;
             }
 
-            function updateData(path, data) {
-                var config = getAuth(),
-                    url = api + path;
+            function updateData(data) {
+                var config = getAuth();
 
                 if (!data) {
                     deferred.reject('no data to update');
                     return deferred.promise;
                 }
 
-                $http.put(url, data, config)
+                $http.put(this.url, data, config)
                     .success(function (response) {
                         deferred.resolve(response);
                     })
@@ -86,9 +85,9 @@
                 return deferred.promise;
             }
 
-            function deleteData(path) {
+            function deleteData(id) {
                 var config = getAuth(),
-                    url = api + path;
+                    url = id ? this.url + '/' + id : this.url;
 
                 $http.delete(url, config)
                     .success(function (response) {
