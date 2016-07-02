@@ -47,13 +47,14 @@
             }
 
             function createData(data) {
+                
                 var config = getAuth();
 
                 if (!data) {
                     deferred.reject('no data set');
                     return deferred.promise;
                 }
-
+                console.log (this.url, data, config);
                 $http.post(this.url, data, config)
                     .success(function (response) {
                         console.log('save');

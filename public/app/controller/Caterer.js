@@ -39,11 +39,11 @@
     }
 
     function CatererCreateController ($scope, $location, DataService) {
-        var Caterer = DataService;
+        var Caterer = new DataService('caterer');
         $scope.cat = {};
-
+        
         $scope.createCat = function () {
-            Caterer.create('caterer', callback, $scope.cat)
+            Caterer.create($scope.cat)
                 .then(function (res) {
                     console.log(res);
 
@@ -53,11 +53,12 @@
     }
 
     function CatererListController ($scope, DataService) {
-        var Caterer = DataService;
+        var Caterer = new DataService('caterer');
         $scope.message = "Possible caterer";
 
-        Caterer.get('caterer')
+        Caterer.get()
             .then(function (data) {
+                console.log(data);
                 $scope.Caterer = data;
             });
 
