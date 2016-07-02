@@ -64,6 +64,31 @@
     
     function EventCtrl ($scope) {
         $scope.invitees = [{}];
+        $scope.event = {
+            name: 'Tester',
+            date: 1467449245000,
+            memberCount: 20,
+            loc: {
+                name: 'Blablabla',
+                pic: '//fillmurray.com/200/100',
+                description: 'Beschreibung bla hjashdjahsdjhaksdjaksjhdja',
+                address: 'kasjdka jdaksjd kjasdkj',
+                capacity: 20,
+                price: 20,
+                langlon: '48.2524454,11.655653,15'
+            },
+            cat: {
+                name: 'schlag mich tod',
+                pic: '//fillmurray.com/200/100',
+                description: 'Das ist eine Beschreibung',
+                pricePerPerson: 20,
+                kitchen: 'italian',
+                selection: 'irgendwas',
+                vein: 'blaa'
+            }
+
+
+        };
 
         $scope.addInvitee = function () {
             $scope.invitees.push({});

@@ -2,32 +2,40 @@
     <header>
         <h2>Event bla <a href="#/event/edit/90" class="btn btn-warning pull-right">Edit</a></h2>
         <p class="event__meta">
-            <span class="event__date">Date: 29.31.1233</span>
-            <span class="event__members">Members: 89</span>
+            <span class="event__date">Date: {{event.date | date: 'd. MMM yyyy, H:mm'}}</span>
+            <span class="event__members">Members: {{event.memberCount}}</span>
         </p>
     </header>
     <div class="row">
         <section class="col-md-6 event__location">
             <aside class="panel panel-default">
-                <header class="panel-heading">Location</header>
+                <header class="panel-heading">location</header>
                 <div class="panel-body no-padding">
                     <table class="table">
                         <tbody>
                             <tr>
-                                <th class="text-center">Name:</th>
-                                <td>Olympiastadion</td>
+                                <th class="text-right">Name:</th>
+                                <td>{{event.loc.name}}</td>
                             </tr>
                             <tr>
-                                <th class="text-center">Name:</th>
-                                <td>Olympiastadion Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur eos facere ipsam labore minus obcaecati sint. Accusantium nemo odio quasi.</td>
+                                <th class="text-right">Picture:</th>
+                                <td>{{event.loc.pic}}</td>
                             </tr>
                             <tr>
-                                <th class="text-center">Name:</th>
-                                <td>Olympiastadion</td>
+                                <th class="text-right">Description:</th>
+                                <td>{{event.loc.description}}</td>
                             </tr>
                             <tr>
-                                <th class="text-center">Name:</th>
-                                <td>Olympiastadion</td>
+                                <th class="text-right">Address:</th>
+                                <td>{{event.loc.address}}</td>
+                            </tr>
+                            <tr>
+                                <th class="text-right">Capacity:</th>
+                                <td>{{event.loc.capacity}}</td>
+                            </tr>
+                            <tr>
+                                <th class="text-right">Price per Person:</th>
+                                <td>{{event.loc.price}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -37,27 +45,35 @@
                 </footer>
             </aside>
         </section>
-        <section class="col-md-6 event__caterer">
+        <section class="col-md-6 event__caterer" ng-init="">
             <aside class="panel panel-default">
                 <header class="panel-heading">Caterer</header>
                 <div class="panel-body">
                     <table class="table">
                         <tbody>
                             <tr>
-                                <th>Name:</th>
-                                <td>Olympiastadion</td>
+                                <th class="text-right">Name:</th>
+                                <td>{{event.cat.name}}</td>
                             </tr>
                             <tr>
-                                <th>Name:</th>
-                                <td>Olympiastadion</td>
+                                <th class="text-right">Picture:</th>
+                                <td>{{event.cat.pic}}</td>
                             </tr>
                             <tr>
-                                <th>Name:</th>
-                                <td>Olympiastadion</td>
+                                <th class="text-right">Description:</th>
+                                <td>{{event.cat.pricePerPerson}}</td>
                             </tr>
                             <tr>
-                                <th>Name:</th>
-                                <td>Olympiastadion</td>
+                                <th class="text-right">Kitchen:</th>
+                                <td>{{event.cat.kitchen}}</td>
+                            </tr>
+                            <tr>
+                                <th class="text-right">Selection:</th>
+                                <td>{{event.cat.selection}}</td>
+                            </tr>
+                            <tr>
+                                <th class="text-right">Vein:</th>
+                                <td>{{event.cat.vein}}</td>
                             </tr>
                         </tbody>
                     </table>
