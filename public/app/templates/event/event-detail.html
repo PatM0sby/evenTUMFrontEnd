@@ -1,4 +1,4 @@
-<div class="container event">
+<div class="container event" id="event-detail">
     <header>
         <h2>{{event.name}}<a href="#/event/edit/{{event._id}}" class="btn btn-warning pull-right">Edit</a></h2>
         <p class="event__meta">
@@ -13,30 +13,30 @@
                 <div class="panel-body no-padding">
                     <table class="table">
                         <tbody>
-                            <tr>
-                                <th class="text-right">Name:</th>
-                                <td>{{event.loc.name}}</td>
-                            </tr>
-                            <tr>
-                                <th class="text-right">Picture:</th>
-                                <td>{{event.loc.pic}}</td>
-                            </tr>
-                            <tr>
-                                <th class="text-right">Description:</th>
-                                <td>{{event.loc.description}}</td>
-                            </tr>
-                            <tr>
-                                <th class="text-right">Address:</th>
-                                <td>{{event.loc.address}}</td>
-                            </tr>
-                            <tr>
-                                <th class="text-right">Capacity:</th>
-                                <td>{{event.loc.capacity}}</td>
-                            </tr>
-                            <tr>
-                                <th class="text-right">Price per Person:</th>
-                                <td>{{event.loc.price}}</td>
-                            </tr>
+                        <tr>
+                            <th class="text-right">Name:</th>
+                            <td>{{event.loc.name}}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-right">Picture:</th>
+                            <td>{{event.loc.pic}}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-right">Description:</th>
+                            <td>{{event.loc.description}}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-right">Address:</th>
+                            <td>{{event.loc.address}}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-right">Capacity:</th>
+                            <td>{{event.loc.capacity}}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-right">Price per Person:</th>
+                            <td>{{event.loc.price}}</td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
@@ -51,96 +51,106 @@
                 <div class="panel-body">
                     <table class="table">
                         <tbody>
-                            <tr>
-                                <th class="text-right">Name:</th>
-                                <td>{{event.cat.name}}</td>
-                            </tr>
-                            <tr>
-                                <th class="text-right">Picture:</th>
-                                <td>{{event.cat.pic}}</td>
-                            </tr>
-                            <tr>
-                                <th class="text-right">Description:</th>
-                                <td>{{event.cat.pricePerPerson}}</td>
-                            </tr>
-                            <tr>
-                                <th class="text-right">Kitchen:</th>
-                                <td>{{event.cat.kitchen}}</td>
-                            </tr>
-                            <tr>
-                                <th class="text-right">Selection:</th>
-                                <td>{{event.cat.selection}}</td>
-                            </tr>
-                            <tr>
-                                <th class="text-right">Vein:</th>
-                                <td>{{event.cat.vein}}</td>
-                            </tr>
+                        <tr>
+                            <th class="text-right">Name:</th>
+                            <td>{{event.cat.name}}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-right">Picture:</th>
+                            <td>{{event.cat.pic}}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-right">Description:</th>
+                            <td>{{event.cat.pricePerPerson}}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-right">Kitchen:</th>
+                            <td>{{event.cat.kitchen}}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-right">Selection:</th>
+                            <td>{{event.cat.selection}}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-right">Vein:</th>
+                            <td>{{event.cat.vein}}</td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
             </aside>
         </section>
     </div>
-    <div class="row">
-        <form>
-            <div class="col-md-5">
-                <h3>List of invitees</h3>
-                <div class="row" ng-repeat="person in invitees track by $index">
-                    <div class="col-sm-5">
-                        <div class="form-group">
-                            <input type="text"
-                                   class="form-control"
-                                   id="name"
-                                   placeholder="Name"
-                                   ng-model="person.name"
-                                   required>
-                        </div>
-                    </div>
-                    <div class="col-sm-6">
-                        <div class="form-group">
-                            <input type="email"
-                                   class="form-control"
-                                   id="email"
-                                   placeholder="Email"
-                                   ng-model="person.email"
-                                   required>
-                        </div>
-                    </div>
-                    <div class="col-sm-1">
-                        <button class="btn btn-secondary" ng-click="deleteInvitee($index)">&times;</button>
+    <div class="row" id="invitations">
+        <div class="col-md-5">
+            <h3>List of invitees</h3>
+            <div class="row" ng-repeat="person in invitees track by $index">
+                <div class="col-sm-5">
+                    <div class="form-group">
+                        <input type="text"
+                               class="form-control"
+                               id="name"
+                               placeholder="Name"
+                               ng-model="person.name"
+                               required>
                     </div>
                 </div>
-                <button class="btn btn-secondary" ng-click="addInvitee()">add one</button>
-            </div>
-            <div class="col-md-7">
-                <form>
+                <div class="col-sm-6">
                     <div class="form-group">
-                        <label for="template">Template:</label>
-                        <select id="template" >
-                            <option>T1</option>
-                            <option>T2</option>
-                        </select>
+                        <input type="email"
+                               class="form-control"
+                               id="email"
+                               placeholder="Email"
+                               ng-model="person.email"
+                               required>
                     </div>
+                </div>
+                <div class="col-sm-1">
+                    <button class="btn btn-secondary" ng-click="deleteInvitee(person)">&times;</button>
+                </div>
+            </div>
+            <button class="btn btn-secondary" ng-click="addInvitee()">add one</button>
+        </div>
+        <div class="col-md-6 col-md-offset-1">
+            <h3>Invitation settings</h3>
+            <div class="row">
+                <div class="col-sm-6">
                     <div class="form-group">
                         <label for="salutation">Salutation:</label>
-                        <select id="salutation" >
+                        <select id="salutation" class="form-control" ng-model="invitation.salutation">
                             <option>Dear</option>
                             <option>Hi</option>
                         </select>
                     </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="template">Template:</label>
+                        <select id="template" class="form-control" ng-model="invitation.template">
+                            <option>T1</option>
+                            <option>T2</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-12">
                     <div class="form-group">
                         <label for="message">Your message:</label>
-                        <textarea type="text"
-                               id="message"
-                               placeholder="Your message"
-                               ng-model="event.name"
-                               required></textarea>
+                    <textarea type="text"
+                              id="message"
+                              class="form-control"
+                              placeholder="Your message"
+                              rows="10"
+                              ng-model="invitation.message"
+                              required></textarea>
                     </div>
-                </form>
-
-
-                <!-- select Template, select Anrede, Message (in der Höhe verändern) -->
+                </div>
             </div>
-        </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="text-center">
+            <button class="btn btn-warning" ng-click="updateEvent()">Save</button>
+            <button class="btn btn-success" ng-click="sendInvitations()">Send invitations</button>
+        </div>
     </div>
 </div>

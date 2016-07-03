@@ -29,7 +29,7 @@
                 controller: "CatererListController"
             })
             .when("/caterer/new", {
-                templateUrl: "app/templates/caterer/create.html",
+                templateUrl: "app/templates/caterer/edit.html",
                 controller: "CatererCreateController"
             })
             .when("/caterer/:id/edit", {

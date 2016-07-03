@@ -37,14 +37,14 @@
         </div>
         <div class="form-group">
             <label for="location">Location</label>
-            <select id="location" ng-model="event.location">
+            <select id="location" class="form-control" ng-model="event.location">
                 <option value="no selected" ng-selected="!exist">select a location</option>
                 <option ng-value="loc._id" ng-repeat="loc in locations" ng-selected="event.location === loc._id">{{loc.name}}</option>
             </select>
         </div>
         <div class="form-group">
             <label for="caterer">Caterer</label>
-            <select id="caterer" ng-model="event.caterer">
+            <select id="caterer" class="form-control" ng-model="event.caterer">
                 <option value="no selected" ng-selected="!exist">select a caterer</option>
                 <option ng-value="cat._id" ng-repeat="cat in caterers" ng-selected="event.caterer === cat._id">{{cat.name}}</option>
             </select>

@@ -7,6 +7,7 @@
             'ngResource',
 
             // core
+            'Helper',
             'Directives',
             'Auth',
             'User',
@@ -49,10 +50,14 @@
     }
 
     function run ($rootScope, $location, currUser) {
+        $rootScope.history = [];
+
         $rootScope.$on('$routeChangeStart', function (event, next, current) {
             if (!currUser.getToken() && next.templatUrl !== 'app/templates/home/home.html') {
                 $location.path('/');
             }
+
+            $rootScope.history.push($location.path());
         });
     }
 

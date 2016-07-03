@@ -32,16 +32,20 @@
                 return {};
             };
 
+            var successCallback = function (res) {
+                //console.log(res);
+                deferred.resolve(res.data);
+            };
+
+            var errorCallback = function (err) {
+                deferred.reject(err);
+            };
+
             function getData() {
                 var config = getAuth();
 
                 $http.get(this.url, config)
-                    .success(function (response) {
-                        deferred.resolve(response);
-                    })
-                    .error(function (error) {
-                        deferred.reject(error);
-                    });
+                    .then(successCallback, errorCallback);
 
                 return deferred.promise;
             }
@@ -54,15 +58,9 @@
                     deferred.reject('no data set');
                     return deferred.promise;
                 }
-                console.log (this.url, data, config);
+
                 $http.post(this.url, data, config)
-                    .success(function (response) {
-                        console.log('save');
-                        deferred.resolve(response);
-                    })
-                    .error(function (error) {
-                        deferred.reject(error);
-                    });
+                    .then(successCallback, errorCallback);
 
                 return deferred.promise;
             }
@@ -76,12 +74,7 @@
                 }
 
                 $http.put(this.url, data, config)
-                    .success(function (response) {
-                        deferred.resolve(response);
-                    })
-                    .error(function (error) {
-                        deferred.reject(error);
-                    });
+                    .then(successCallback, errorCallback);
 
                 return deferred.promise;
             }
@@ -91,13 +84,7 @@
                     url = id ? this.url + '/' + id : this.url;
 
                 $http.delete(url, config)
-                    .success(function (response) {
-                        //delete answer returns remaining events
-                        deferred.resolve(response);
-                    })
-                    .error(function (error) {
-                        deferred.reject(error);
-                    });
+                    .then(successCallback, errorCallback);
 
                 return deferred.promise;
             }

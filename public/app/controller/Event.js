@@ -17,7 +17,7 @@
     config.$inject = ["$routeProvider"];
     EventListCtrl.$inject = ['$scope', 'DataService'];
     EventCtrl.$inject = ['$scope', '$routeParams', 'DataService'];
-    EventEditCtrl.$inject = ['$scope', '$routeParams', '$location', 'DataService', 'currUser'];
+    EventEditCtrl.$inject = ['$scope', '$routeParams', 'DataService', 'currUser', 'LocationFactory'];
 
     // functionality
     function config ($routeProvider) {
@@ -46,7 +46,6 @@
         Events.get()
             .then(function (res) {
                 $scope.events = res;
-                console.log(res);
             });
 
         $scope.$watch('events', function (n, o) {
@@ -58,8 +57,7 @@
         $scope.deleteEvent = function (id) {
             Events.delete(id)
                 .then(function (res) {
-                    console.log(res);
-                    $scope.events = res;
+                    $scope.events.splice($scope.events.indexOf(res), 1);
                 });
         }
 
@@ -82,28 +80,54 @@
                     .then(function (cat) {
                         res.cat = cat;
                     });
-
+                
                 $scope.event = res;
 
+                if ($scope.event.invitation && $scope.event.invitation.settings) {
+                    $scope.invitation = $scope.event.invitation.settings;
+                } else {
+                    $scope.invitation = {
+                        template: '',
+                        salutation: '',
+                        message: ''
+                    };
+                }
 
+                if ($scope.event.invitation && $scope.event.invitation.invitees.length >= 1) {
+                    $scope.invitees = $scope.event.invitation.invitees;
+                } else {
+                    $scope.invitees = [{name: '', email: ''}];
+                }
             });
 
-
-        $scope.invitees = [{}];
-
         $scope.addInvitee = function () {
-            $scope.invitees.push({});
+            $scope.invitees.push({name: '', email: ''});
         };
 
-        $scope.deleteInvitee = function (id) {
-            $scope.invitees.splice(id, 1);
-            console.log($scope.invitees);
+        $scope.deleteInvitee = function (person) {
+            var id = $scope.invitees.indexOf(person);
 
+            console.log(id);
+            $scope.invitees.splice(id, 1);
+        };
+        
+        $scope.updateEvent = function () {
+            $scope.event.invitation = {
+                invitees: $scope.invitees,
+                settings: $scope.invitation
+            };
+
+            Event.update($scope.event);
+        };
+
+        $scope.sendInvitations = function () {
+            console.log('invitations send!')
         };
     }
     
-    function EventEditCtrl ($scope, $routeParams, $location, DataService, currUser) {
-        var saveMethod, eventPath = $routeParams.id ? 'events/' + $routeParams.id : 'events';
+    function EventEditCtrl ($scope, $routeParams, DataService, currUser, LocationFactory) {
+        var saveMethod,
+            eventPath = $routeParams.id ? 'events/' + $routeParams.id : 'events';
 
         var Event = new DataService(eventPath);
         var Locations = new DataService('locations');
@@ -124,8 +148,6 @@
         if ($routeParams.id) {
             Event.get()
                 .then(function (res) {
-
-                    console.log(res);
                     $scope.event = res;
                 });
 
@@ -134,14 +156,13 @@
             saveMethod = 'update';
         } else {
             $scope.event = {
-                token: currUser.getToken()
+                user: currUser.getUser()._id
             };
 
             saveMethod = 'create';
         }
 
         $scope.save = function () {
-            console.log($scope.event);
             $scope.alertDialog = {visible: false};
 
             if (!$scope.event.location || $scope.event.location === 'no selected') {
@@ -161,11 +182,7 @@
             } else {
                 Event[saveMethod]($scope.event)
                     .then(function (res) {
-                        console.log(res);
-                        $location.path('event');
-                    })
-                    .catch(function (err) {
-                        console.log(err);
+                        LocationFactory.goBack();
                     });
             }
         };

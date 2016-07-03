@@ -11,6 +11,10 @@ main {
     margin-bottom: 6rem;
 }
 
+textarea {
+    resize: vertical;
+}
+
 .navbar-inverse .navbar-nav>li>a.btn {
     color: white;
     padding: 10px 15px;
@@ -75,6 +79,7 @@ main {
     font-weight: bold;
 }
 
+
 #footer {
     background-color: #ccc;
     line-height: 3em;
@@ -85,3 +90,4 @@ main {
     text-align: center;
 
 }
+

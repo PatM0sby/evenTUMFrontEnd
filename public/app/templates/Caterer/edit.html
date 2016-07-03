@@ -1,8 +1,72 @@
-<form class="form-horizontal" ng-submit="saveCat()">
-    <fieldset>
-        <legend>Update Caterer offer</legend>
+<div class="container" >
+    <header>
+        <h3>Create Caterer</h3>
+    </header>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="control-group">
+                <label for="name" class="control-label">Name</label>
+                <input type="text"
+                       class="form-control"
+                       id="name"
+                       placeholder="Name"
+                       required>
+            </div>
+            <div class="control-group">
+                <label for="description" class="control-label">Description</label>
+                <textarea type="text"
+                          class="form-control"
+                          id="description"
+                          placeholder="Description"
+                          required></textarea>
+            </div>
+            <div class="control-group">
+                <label for="address" class="control-label">Address</label>
+                <input type="text"
+                       class="form-control"
+                       id="address"
+                       placeholder="Address"
+                       required>
+            </div>
+        </div>
+        <div class="col-md-6">
 
-        <div ng-include="'app/templates/Caterer/form.html'"></div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="control-group">
+                        <label for="capacity" class="control-label">Capacity</label>
+                        <input type="number"
+                               class="form-control"
+                               id="capacity"
+                               placeholder="Capacity"
+                               required>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="control-group">
+                        <label for="price" class="control-label">Price</label>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <input type="number"
+                                       class="form-control"
+                                       id="price"
+                                       placeholder="Price"
+                                       required>
+                            </div>
+                            <div class="col-sm-6">
+                                <select name="selectPrice" id="selectPrice" class="form-control">
+                                    <option value="person">Price / person</option>
+                                    <option value="event" selected>Price / event</option>
+                                </select>
+                            </div>
+                        </div>
 
-    </fieldset>
-</form>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
