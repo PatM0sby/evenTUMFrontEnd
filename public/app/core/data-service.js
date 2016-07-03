@@ -9,9 +9,6 @@
 
     function DataService ($http, api, currUser, $q) {
         function service (path) {
-
-            var deferred = $q.defer();
-
             this.url = api + path;
             this.get = getData;
             this.create = createData;
@@ -32,61 +29,29 @@
                 return {};
             };
 
-            var successCallback = function (res) {
-                //console.log(res);
-                deferred.resolve(res.data);
-            };
-
-            var errorCallback = function (err) {
-                deferred.reject(err);
-            };
-
             function getData() {
                 var config = getAuth();
 
-                $http.get(this.url, config)
-                    .then(successCallback, errorCallback);
-
-                return deferred.promise;
+                return $http.get(this.url, config);
             }
 
             function createData(data) {
-                
                 var config = getAuth();
 
-                if (!data) {
-                    deferred.reject('no data set');
-                    return deferred.promise;
-                }
-
-                $http.post(this.url, data, config)
-                    .then(successCallback, errorCallback);
-
-                return deferred.promise;
+                return $http.post(this.url, data, config);
             }
 
             function updateData(data) {
                 var config = getAuth();
 
-                if (!data) {
-                    deferred.reject('no data to update');
-                    return deferred.promise;
-                }
-
-                $http.put(this.url, data, config)
-                    .then(successCallback, errorCallback);
-
-                return deferred.promise;
+                return $http.put(this.url, data, config);
             }
 
             function deleteData(id) {
                 var config = getAuth(),
                     url = id ? this.url + '/' + id : this.url;
 
-                $http.delete(url, config)
-                    .then(successCallback, errorCallback);
-
-                return deferred.promise;
+                return $http.delete(url, config);
             }
         }
 

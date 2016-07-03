@@ -1,23 +1,13 @@
-/**
- * Refaktoring, damit Dateien minifiziert werden können und trotzdem Funktionalität erhalten bleibt
- */
 (function (angular) {
     "use strict";
-
-    /**
-     * Defining section for controllers, directives and more
-     *
-     * TODO: adding delete and update functionality
-     */
+    
     angular.module("EvenTUMCaterer", ["ngRoute"])
         .config(config)
-        .controller("CatererCreateController", CatererCreateController)
         .controller("CatererListController", CatererListController)
         .controller("CatererEditController", CatererEditController);
 
     // dependencies
     config.$inject = ["$routeProvider"];
-    CatererCreateController.$inject = ["$scope", "$location", "DataService"];
     CatererListController.$inject = ["$scope", "DataService"];
     CatererEditController.$inject = ["$scope", "$location", "$routeParams", "DataService"];
 
@@ -30,7 +20,7 @@
             })
             .when("/caterer/new", {
                 templateUrl: "app/templates/caterer/edit.html",
-                controller: "CatererCreateController"
+                controller: "CatererEditController"
             })
             .when("/caterer/:id/edit", {
                 templateUrl: "app/templates/caterer/edit.html",
@@ -38,56 +28,57 @@
         });
     }
 
-    function CatererCreateController ($scope, $location, DataService) {
-        var Caterer = new DataService('caterer');
-        $scope.cat = {};
-        
-        $scope.createCat = function () {
-            Caterer.create($scope.cat)
-                .then(function (res) {
-                    console.log(res);
-
-                    $location.url("/caterer");
-                });
-        }
-    }
 
     function CatererListController ($scope, DataService) {
         var Caterer = new DataService('caterer');
-        $scope.message = "Possible caterer";
 
         Caterer.get()
             .then(function (data) {
-                console.log(data);
-                $scope.Caterer = data;
+                $scope.caterer = data;
             });
 
+        $scope.$watch('caterer', function (n, o) {
+
+            //TestDataService.save('events.json', n);
+
+        }, true);
         
-        $scope.deleteCat = function (cat) {
-            Caterer.delete('caterer/' + cat._id)
+        $scope.deleteCat = function (id) {
+
+            Caterer.delete(id)
                 .then(function (res) {
                     console.log(res);
 
-                    $scope.Caterer.splice($scope.Caterer.indexOf(cat), 1);
+                    //$scope.Caterer.splice($scope.Caterer.indexOf(res), 1);
                 });
         };
     }
 
     function CatererEditController ($scope, $location, $routeParams, DataService) {
+        var dataPath = 'caterer',
+            saveAction = 'create';
+
+        $scope.selected = true;
         $scope.cat = {};
-        var Caterer = DataService,
-            id = $routeParams.id;
 
-        Caterer.get('caterer/' + id)
-            .then(function (res) {
-                $scope.cat = res;
-            });
+        if ($routeParams.id) {
+            dataPath = dataPath + '/' + $routeParams.id;
+            saveAction = 'update';
+            $scope.selected = false;
+        }
 
-        $scope.saveCat = function () {
-            Caterer.update('caterer/' + $scope.cat._id, $scope.cat)
+        var Caterer = new DataService(dataPath);
+
+        if ($routeParams.id) {
+            Caterer.get()
                 .then(function (res) {
-                    console.log(res);
+                    $scope.cat = res;
+                });
+        }
 
+        $scope.save = function () {
+            Caterer[saveAction]($scope.cat)
+                .then(function (res) {
                     $location.url("/caterer");
                 });
         };

@@ -23,7 +23,7 @@
     function config ($routeProvider) {
         $routeProvider
             .when("/", {
-                templateUrl: "app/templates/home/home.html"
+                templateUrl: "app/templates/home.html"
             });
     }
 

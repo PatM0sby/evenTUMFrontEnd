@@ -15,7 +15,7 @@
 
     // dependencies
     config.$inject = ["$routeProvider"];
-    EventListCtrl.$inject = ['$scope', 'DataService'];
+    EventListCtrl.$inject = ['$scope', 'DataService', 'ArrayHelper'];
     EventCtrl.$inject = ['$scope', '$routeParams', 'DataService'];
     EventEditCtrl.$inject = ['$scope', '$routeParams', 'DataService', 'currUser', 'LocationFactory'];
 
@@ -40,24 +40,20 @@
             });
     }
     
-    function EventListCtrl ($scope, DataService) {
+    function EventListCtrl ($scope, DataService, ArrayHelper) {
         var Events = new DataService('events');
 
         Events.get()
             .then(function (res) {
-                $scope.events = res;
+                $scope.events = res.data;
             });
-
-        $scope.$watch('events', function (n, o) {
-
-            //TestDataService.save('events.json', n);
-
-        }, true);
 
         $scope.deleteEvent = function (id) {
             Events.delete(id)
                 .then(function (res) {
-                    $scope.events.splice($scope.events.indexOf(res), 1);
+                    $scope.events = ArrayHelper.deleteObject(res.data, $scope.events, '_id');
+                }, function (err) {
+                    console.log(err);
                 });
         }
 
@@ -68,20 +64,21 @@
 
         Event.get()
             .then(function (res) {
-                var Location = new DataService('locations/' + res.location);
-                var Caterer = new DataService('caterer/' + res.caterer);
+                var event = res.data;
+                var Location = new DataService('locations/' + event.location);
+                var Caterer = new DataService('caterer/' + event.caterer);
 
                 Location.get()
                     .then(function (loc) {
-                        res.loc = loc;
+                        event.loc = loc.data;
                     });
 
                 Caterer.get()
                     .then(function (cat) {
-                        res.cat = cat;
+                        event.cat = cat.data;
                     });
                 
-                $scope.event = res;
+                $scope.event = event;
 
                 if ($scope.event.invitation && $scope.event.invitation.settings) {
                     $scope.invitation = $scope.event.invitation.settings;
@@ -135,12 +132,12 @@
 
         Locations.get()
             .then(function (res) {
-                $scope.locations = res;
+                $scope.locations = res.data;
             });
         
         Caterers.get()
             .then(function (res) {
-                $scope.caterers = res;
+                $scope.caterers = res.data;
             });
 
         $scope.exist = false;
@@ -148,7 +145,7 @@
         if ($routeParams.id) {
             Event.get()
                 .then(function (res) {
-                    $scope.event = res;
+                    $scope.event = res.data;
                 });
 
             $scope.exist = true;

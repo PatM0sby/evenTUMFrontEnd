@@ -17,7 +17,7 @@
     function config ($routeProvider) {
         $routeProvider
             .when("/offer", {
-                templateUrl: "app/templates/offer/offer.html"
+                templateUrl: "app/templates/offer.html"
             });
     }
 })(angular);
