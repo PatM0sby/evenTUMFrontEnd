@@ -1,8 +1,74 @@
-<form class="form-horizontal" ng-submit="saveLoc()">
-<fieldset>
-    <legend>Update Location offer</legend>
+<div class="container" >
+    <header>
+        <h3>Create Location</h3>
+    </header>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="control-group">
+                <label for="name" class="control-label">Name</label>
+                <input type="text"
+                       class="form-control"
+                       id="name"
+                       placeholder="Name"
+                       ng-model="loc.name"
+                       required>
+            </div>
+            <div class="control-group">
+                <label for="description" class="control-label">Description</label>
+                <textarea type="text"
+                          class="form-control"
+                          id="description"
+                          placeholder="Description"
+                          ng-model="loc.description"
+                          required></textarea>
+            </div>
+            <div class="control-group">
+                <label for="address" class="control-label">Address</label>
+                <input type="text"
+                       class="form-control"
+                       id="address"
+                       placeholder="Address"
+                       ng-model="loc.address"
+                       required>
+            </div>
+            <button class ="btn btn-success" type="submit" ng-click="save()">Submit</button>
+        </div>
+        <div class="col-md-6">
 
-    <div ng-include="'app/templates/Location/form.html'"></div>
-
-</fieldset>
-</form>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="control-group">
+                        <label for="capacity" class="control-label">Capacity</label>
+                        <input type="number"
+                               class="form-control"
+                               id="capacity"
+                               placeholder="Capacity"
+                               ng-model="loc.capacity"
+                               required>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="control-group">
+                        <label for="price" class="control-label">Price</label>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <input type="number"
+                                       class="form-control"
+                                       id="price"
+                                       placeholder="Price"
+                                       ng-model="loc.price"
+                                       required>
+                            </div>
+                            <div class="col-sm-6">
+                                <select name="priceType" id="priceType" class="form-control" ng-model="loc.priceType">
+                                    <option value="person" ng-selected=" selected || loc.priceType === 'person' ">Price / person</option>
+                                    <option value="event" ng-selected=" loc.priceType === 'event' ">Price / event</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

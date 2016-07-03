@@ -8,7 +8,7 @@
 
     //dependencies
     config.$inject = ["$routeProvider"];
-    LocationListController.$inject = ["$scope", "DataService"];
+    LocationListController.$inject = ["$scope", "DataService", "ArrayHelper"];
     LocationEditController.$inject = ["$scope", "$location", "$routeParams", "DataService"];
 
     //functionality
@@ -28,52 +28,49 @@
             });
     }
 
-
-    function LocationListController ($scope, DataService) {
+    function LocationListController ($scope, DataService, ArrayHelper) {
         var Location = new DataService('locations');
 
         Location.get()
-            .then(function (data) {
-            $scope.location = data;
-        });
+            .then(function (res) {
+                $scope.location = res.data;
+            });
 
-
-
-
-
-
-        $scope.deleteLoc = function(Loc){
-           /* $http.delete(api + "locations/" + Loc._id).success(function(response){
-                console.log(response);
-                $scope.Location.splice($scope.Location.indexOf(Loc),1);
-            });*/
+        $scope.deleteLoc = function(id){
+            Location.delete(id)
+                .then(function (res) {
+                    console.log(res.data);
+                    $scope.location = ArrayHelper.deleteObject(res.data, $scope.location, '_id');
+                }, function (err) {
+                    console.log(err);
+                });
         };
     }
 
     function LocationEditController ($scope, $location, $routeParams, DataService) {
         var dataPath = 'locations',
-            saveAction = 'create';
+            saveMethod = 'create';
+
+        var Location = new DataService(dataPath);
 
         $scope.selected= true;
         $scope.loc = {};
 
         if ($routeParams.id) {
             dataPath = dataPath + '/' + $routeParams.id;
-            saveAction = 'update';
+            saveMethod = 'update';
             $scope.selected = false;
-        }
 
-        var Location = new DataService(dataPath);
+            Location = new DataService(dataPath);
 
-        if ($routeParams.id) {
             Location.get()
                 .then(function (res) {
-                    $scope.loc = res;
+                    $scope.loc = res.data;
                 });
         }
 
         $scope.save = function () {
-            Location[saveAction]($scope.loc)
+            Location[saveMethod]($scope.loc)
                 .then(function  (res) {
                     $location.url("location");
                 });

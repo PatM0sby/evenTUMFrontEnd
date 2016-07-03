@@ -8,7 +8,7 @@
 
     // dependencies
     config.$inject = ["$routeProvider"];
-    CatererListController.$inject = ["$scope", "DataService"];
+    CatererListController.$inject = ["$scope", "DataService", "ArrayHelper"];
     CatererEditController.$inject = ["$scope", "$location", "$routeParams", "DataService"];
 
     // functionality
@@ -27,57 +27,49 @@
                 controller: "CatererEditController"
         });
     }
-
-
-    function CatererListController ($scope, DataService) {
+    
+    function CatererListController ($scope, DataService, ArrayHelper) {
         var Caterer = new DataService('caterer');
 
         Caterer.get()
-            .then(function (data) {
-                $scope.caterer = data;
+            .then(function (res) {
+                $scope.caterer = res.data;
             });
-
-        $scope.$watch('caterer', function (n, o) {
-
-            //TestDataService.save('events.json', n);
-
-        }, true);
         
         $scope.deleteCat = function (id) {
-
             Caterer.delete(id)
                 .then(function (res) {
-                    console.log(res);
-
-                    //$scope.Caterer.splice($scope.Caterer.indexOf(res), 1);
+                    $scope.caterer = ArrayHelper.deleteObject(res.data, $scope.caterer, '_id');
+                }, function (err) {
+                    console.log(err);
                 });
         };
     }
 
     function CatererEditController ($scope, $location, $routeParams, DataService) {
         var dataPath = 'caterer',
-            saveAction = 'create';
+            saveMethod = 'create';
+
+        var Caterer = new DataService(dataPath);
 
         $scope.selected = true;
         $scope.cat = {};
 
         if ($routeParams.id) {
             dataPath = dataPath + '/' + $routeParams.id;
-            saveAction = 'update';
+            saveMethod = 'update';
             $scope.selected = false;
-        }
 
-        var Caterer = new DataService(dataPath);
+            Caterer = new DataService(dataPath);
 
-        if ($routeParams.id) {
             Caterer.get()
                 .then(function (res) {
-                    $scope.cat = res;
+                    $scope.cat = res.data;
                 });
         }
 
         $scope.save = function () {
-            Caterer[saveAction]($scope.cat)
+            Caterer[saveMethod]($scope.cat)
                 .then(function (res) {
                     $location.url("/caterer");
                 });

@@ -1,35 +1,34 @@
-<div class="starter-template">
-    <h1>Locations</h1>
-    <p class="lead">{{message}}.</p>
+<div class="container">
+    <h2>Locations <a href = "#/location/new" class = "btn btn-success pull-right">Add new Location</a></h2>
+
+    <div class = "row">
+        <div class = "col-md-12">
+            <table class = "table table-hover table-striped">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Address</th>
+                    <th>Capacity</th>
+
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="loc in location">
+                    <td>{{loc.name}}</td>
+                    <td>{{loc.description}}</td>
+                    <td>{{loc.price}}€ per {{loc.priceType}}</td>
+                    <td>{{loc.address}}</td>
+                    <td>{{loc.capacity}}</td>
+                    <td>
+                        <a href="#/location/{{loc._id}}/edit" class="btn btn-default btn-sm">Edit</a>
+                        <a ng-click="deleteLoc(loc._id)" role="button" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
 </div>
-
-<div class = "row">
-    <div class = "col-md-12">
-        <table class = "table table-hover table-striped">
-            <thead>
-            <tr>
-                <th>Name</th>
-                <th>Picture</th>
-                <th>Description</th>
-                <th>Address</th>
-                <th>Capacity</th>
-                <th>Price</th>
-
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="Loc in Location">
-                <td>{{Loc.name}}</td>
-                <td>{{Loc.pic}}</td>
-                <td>{{Loc.description}}</td>
-                <td>{{Loc.address}}</td>
-                <td>{{Loc.capacity}}</td>
-                <td>{{Loc.price}}</td>
-                <td><a href="#/location/{{Loc._id}}/edit" class="btn btn-default btn-sm">Edit</a></td>
-                <td><a href="" ng-click="deleteLoc(Loc)" class="btn btn-danger btn-sm">Delete</a></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    <a href = "#/location/new" class = "btn btn-default">Add new Location</a>
 </div>

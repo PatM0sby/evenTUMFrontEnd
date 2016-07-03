@@ -21,7 +21,6 @@
         return {
             deleteObject: function (obj, arr, needle) {
                 arr.forEach(function (c, i, a) {
-                    console.log(c, obj);
                     if (c[needle] === obj[needle]) {
                         arr.splice(i, 1);
                     }

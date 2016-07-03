@@ -8,7 +8,7 @@
 
     // dependencies
     config.$inject = ["$routeProvider"];
-    InvitationListController.$inject = ["$scope", "DataService"];
+    InvitationListController.$inject = ["$scope", "DataService", "ArrayHelper"];
     InvitationEditController.$inject = ["$scope", "$location", "$routeParams", "DataService"];
 
     // functionality
@@ -28,56 +28,48 @@
             });
     }
 
-
-    function InvitationListController ($scope, DataService) {
+    function InvitationListController ($scope, DataService, ArrayHelper) {
         var Invitation = new DataService('invitations');
 
         Invitation.get()
-            .then(function (data) {
-                $scope.invitation = data;
+            .then(function (res) {
+                $scope.invitation = res.data;
             });
 
-        $scope.$watch('invitation', function (n, o) {
-
-            //TestDataService.save('events.json', n);
-
-        }, true);
-
-        $scope.deleteCat = function (id) {
-
+        $scope.deleteInv = function (id) {
             Invitation.delete(id)
                 .then(function (res) {
-                    console.log(res);
-
-                    //$scope.Invitation.splice($scope.Invitation.indexOf(res), 1);
+                    $scope.invitation = ArrayHelper.deleteObject(res.data, $scope.invitation, '_id');
+                }, function (err) {
+                    console.log(err);
                 });
         };
     }
 
     function InvitationEditController ($scope, $location, $routeParams, DataService) {
         var dataPath = 'invitations',
-            saveAction = 'create';
+            saveMethod = 'create';
+
+        var Invitation = new DataService(dataPath);
 
         $scope.selected = true;
         $scope.inv = {};
 
         if ($routeParams.id) {
             dataPath = dataPath + '/' + $routeParams.id;
-            saveAction = 'update';
+            saveMethod = 'update';
             $scope.selected = false;
-        }
 
-        var Invitation = new DataService(dataPath);
-
-        if ($routeParams.id) {
+            Invitation = new DataService(dataPath);
+            
             Invitation.get()
                 .then(function (res) {
-                    $scope.inv = res;
+                    $scope.inv = res.data;
                 });
         }
 
         $scope.save = function () {
-            Invitation[saveAction]($scope.inv)
+            Invitation[saveMethod]($scope.inv)
                 .then(function (res) {
                     $location.url("/invitation");
                 });
