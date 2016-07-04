@@ -127,7 +127,7 @@
                     <div class="form-group">
                         <label for="invitation">Invitation</label>
                         <select id="invitation" class="form-control" ng-model="event.invitation">
-                            <option value="no selected" ng-selected="!exist">select a invitation</option>
+                            <option value="no selected" ng-selected="!exist">select an invitation</option>
                             <option ng-value="inv._id" ng-repeat="inv in invitation" ng-selected="event.invitation === inv._id">{{inv.name}}</option>
                         </select>
                     </div>
