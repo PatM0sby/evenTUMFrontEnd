@@ -42,6 +42,8 @@
                 <option ng-value="loc._id" ng-repeat="loc in locations" ng-selected="event.location === loc._id">{{loc.name}}</option>
             </select>
         </div>
+        <button type="button" ng-click="toggleMap()" class="btn btn-info" ng-model="event.location">Toggle Map</button>
+        <div id="map" style="width: 800px; height: 480px;" ng-show="showMap"></div>
         <div class="form-group">
             <label for="caterer">Caterer</label>
             <select id="caterer" class="form-control" ng-model="event.caterer">
@@ -53,5 +55,5 @@
         <button href='/event/edit/:id' type="submit" class="btn btn-success">Submit</button>
     </form>
 
-    <div id="map" style="width: 800px; height: 480px;"></div>
+
 </div>
