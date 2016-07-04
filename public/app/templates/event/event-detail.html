@@ -117,13 +117,22 @@
                     </div>
                 </div>
                 <div class="col-sm-6">
-                    <div class="form-group">
+                   <!-- <div class="form-group">
                         <label for="template">Template:</label>
                         <select id="template" class="form-control" ng-model="invitation.template">
                             <option>T1</option>
                             <option>T2</option>
                         </select>
+                    </div>-->
+                    <div class="form-group">
+                        <label for="invitation">Invitation</label>
+                        <select id="invitation" class="form-control" ng-model="event.invitation">
+                            <option value="no selected" ng-selected="!exist">select a invitation</option>
+                            <option ng-value="inv._id" ng-repeat="inv in invitation" ng-selected="event.invitation === inv._id">{{inv.name}}</option>
+                        </select>
                     </div>
+
+
                 </div>
                 <div class="col-sm-12">
                     <div class="form-group">

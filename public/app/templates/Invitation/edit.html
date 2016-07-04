@@ -1,12 +1,13 @@
+<!--
 <form class="form-horizontal" ng-submit="saveInv()">
     <fieldset>
         <legend>Update Invitation offer</legend>
 
-        <div ng-include="'app/templates/Invitation/form.html'"></div>
+        <div ng-include="'app/templates/Invitation/list.html'"></div>
 
     </fieldset>
 </form>
-
+-->
 
 <div class="container" >
     <header>
@@ -32,14 +33,31 @@
                           ng-model="inv.description"
                           required></textarea>
             </div>
-            <div class="control-group">
-                <label for="price" class="control-label">Price per person</label>
-                    <input type="number"
-                           class="form-control"
-                           id="price"
-                           placeholder="Price"
-                           ng-model="inv.price"
-                           required>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="control-group">
+                        <label for="price" class="control-label">Price</label>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="input-group">
+                                    <input type="number"
+                                           class="form-control"
+                                           id="price"
+                                           placeholder="Price"
+                                           ng-model="inv.price"
+                                           required>
+                                    <span class="input-group-addon">€</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <select name="priceType" id="priceType" class="form-control" ng-model="inv.priceType">
+                                    <option value="person" ng-selected=" selected || inv.priceType === 'person' ">Price / person</option>
+                                    <option value="event" ng-selected=" inv.priceType === 'event' ">Price / event</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         <div class="row"><button class ="btn btn-success" type="submit" ng-click="save()" >Submit</button></div>
 
