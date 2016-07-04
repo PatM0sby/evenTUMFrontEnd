@@ -30,8 +30,8 @@
                             <td>{{event.loc.capacity}}</td>
                         </tr>
                         <tr>
-                            <th class="text-right">Price per Person:</th>
-                            <td>{{event.loc.price}}</td>
+                            <th class="text-right">Price:</th>
+                            <td>{{event.loc.price}}€ per {{event.loc.priceType}}</td>
                         </tr>
                         </tbody>
                     </table>
@@ -51,6 +51,10 @@
                         <tr>
                             <th class="text-right">Description:</th>
                             <td>{{event.cat.description}}</td>
+                        </tr>
+                        <tr>
+                            <th class="text-right">Price:</th>
+                            <td>{{event.cat.price}}€ per {{event.cat.priceType}}</td>
                         </tr>
                         <tr>
                             <th class="text-right">Kitchen:</th>
