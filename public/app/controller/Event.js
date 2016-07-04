@@ -11,7 +11,8 @@
         .config(config)
         .controller('EventListCtrl', EventListCtrl)
         .controller('EventCtrl', EventCtrl)
-        .controller('EventEditCtrl', EventEditCtrl);
+        .controller('EventEditCtrl', EventEditCtrl)
+        .controller('MapCtrl', MapCtrl);
 
     // dependencies
     config.$inject = ["$routeProvider"];
@@ -71,6 +72,7 @@
                 Location.get()
                     .then(function (loc) {
                         event.loc = loc.data;
+                        start();
                     });
 
                 Caterer.get()
@@ -122,7 +124,7 @@
         };
     }
     
-    function EventEditCtrl ($scope, $routeParams, DataService, currUser, LocationFactory) {
+    function EventEditCtrl ($scope, $routeParams, DataService, currUser, LocationFactory, $q) {
         var saveMethod,
             eventPath = $routeParams.id ? 'events/' + $routeParams.id : 'events';
 
@@ -133,6 +135,8 @@
         Locations.get()
             .then(function (res) {
                 $scope.locations = res.data;
+                for (i = 0; i < $scope.locations.length; i++){
+                    $scope.createMarker($scope.locations[i]);}
             });
         
         Caterers.get()
@@ -184,6 +188,171 @@
             }
         };
 
+        //MAPS
+        $scope.markers = [];
+
+        $scope.map = new google.maps.Map(document.getElementById('map'), {
+            mapTypeId: google.maps.MapTypeId.TERRAIN,
+            center: new google.maps.LatLng(48.135125, 11.581981),
+            zoom: 12
+        });
+
+        $scope.infoWindow = new google.maps.InfoWindow({});
+
+
+
+        $scope.createMarker = function (location) {
+            var geocoder = new google.maps.Geocoder();
+            geocoder.geocode({
+                    'address': location.address+", "+ location.place
+                },
+                function (results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        var marker = new google.maps.Marker({
+                            position: results[0].geometry.location,
+                            map: $scope.map,
+                            title: location.name,
+                            content: '<div class="infoWindowContent">' + location.description + '</div>'
+                        });
+
+
+
+                        google.maps.event.addListener(marker, 'click', function () {
+                            $scope.infoWindow.setContent('<h2>' + marker.title + '</h2>' + marker.content);
+                            $scope.infoWindow.open($scope.map, marker);
+                        });
+                        $scope.markers.push(marker);
+                    }
+
+                });
+        };
+
+
+
+            var i;
+        /*
+        for (i = 0; i < $scope.locations.length; i++){
+            $scope.createMarker($scope.locations[i]);
+        }*/
+
+
+
+
+        
     }
+
+    function MapCtrl ($scope, $routeParams, DataService) {
+        /*function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 8,
+                center: {lat: -34.397, lng: 150.644}
+            });
+            var geocoder = new google.maps.Geocoder();
+
+            document.getElementById('submit').addEventListener('click', function() {
+                geocodeAddress(geocoder, map);
+            });
+        }
+            */
+            //var Locations=$scope.locations;
+            var Locations = [{
+                "_id": "5778fb3127196aac1cf1111c",
+                "place_id": "ChIJEX7aa7V2nkcRdXBHQ7gkgT4",
+                "name": "Pat Home",
+                "address": "Blodigstraße 20a",
+                "zip": 80933,
+                "place": "München",
+                "capacity": 10,
+                "price": 100,
+                "description": "Home",
+                "__v": 0
+            }, {
+                "_id": "5778fb5e27196aac1cf1111d",
+                "place_id": "ChIJp5hGLexynkcRdpelu3QruZg",
+                "name": "TUM",
+                "description": "Uni",
+                "address": "Boltzmannstraße 1",
+                "zip": 88888,
+                "place": "Garching",
+                "capacity": 5000,
+                "price": 999999,
+                "__v": 0
+            }];
+
+        /*
+
+        //to be used with real Locations straight from the API
+        Locations.forEach(function(element) {
+
+               // function geocodeAddress(geocoder, resultsMap) {
+                    var address = element.address + " ," + element.zip + " ," + element.place;
+                    var address = "Blodigstraße 20a, 80933 München";
+                    geocoder.geocode({'address': address}, function (results, status) {
+                        if (status === google.maps.GeocoderStatus.OK) {
+                            console.log(results[0]);
+                            resultsMap.setCenter(results[0].geometry.location);
+                            var marker = new google.maps.Marker({
+                                map: resultsMap,
+                                position: results[0].geometry.location
+                            });
+                        } else {
+                            alert('Geocode was not successful for the following reason: ' + status);
+                        }
+                    });
+                */
+        
+                //markers.push(marker);
+        
+        //google.maps.event.addDomListener(window, 'load', initialize);
+
+        $scope.markers = [];
+
+        $scope.map = new google.maps.Map(document.getElementById('map'), {
+            mapTypeId: google.maps.MapTypeId.TERRAIN,
+            center: new google.maps.LatLng(48.135125, 11.581981),
+            zoom: 12
+        });
+      
+        $scope.infoWindow = new google.maps.InfoWindow({});
+
+
+
+        $scope.createMarker = function (Locations) {
+            var geocoder = new google.maps.Geocoder();
+            geocoder.geocode({
+                    'address': Locations.address+", "+Locations.place
+                },
+                function (results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        var marker = new google.maps.Marker({
+                            position: results[0].geometry.location,
+                            map: $scope.map,
+                            title: Locations.name,
+                            content: '<div class="infoWindowContent">' + Locations.description + '</div>'
+                        });
+
+
+                        google.maps.event.addListener(marker, 'click', function () {
+                            $scope.infoWindow.setContent('<h2>' + marker.title + '</h2>' + marker.content);
+                            $scope.infoWindow.open($scope.map, marker);
+                        });
+                        $scope.markers.push(marker);
+                    }
+
+                });
+        }
+        var i;
+        for (i = 0; i < Locations.length; i++) {
+            $scope.createMarker(Locations[i]);
+        }
+
+
+    };
+
+
+
+
+
+    
     
 })(angular);
