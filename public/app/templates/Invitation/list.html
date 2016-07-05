@@ -1,7 +1,6 @@
-<div class="starter-template">
-    <h1>Invitation</h1>
-    <p class="lead">{{message}}.</p>
-</div>
+<div class="container">
+    <h2>Invitation <a href = "#/invitation/new" class = "btn btn-success pull-right">Add new Invitation</a></h2>
+
 
 <div class = "row">
     <div class = "col-md-12">
@@ -9,31 +8,22 @@
             <thead>
             <tr>
                 <th>Name</th>
-                <th>Layover</th>
                 <th>Description</th>
-                <th>Price per Person</th>
-                <th>Salutation</th>
-                <th>Text</th>
-                <th>Greeting</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="inv in Invitations">
+            <tr ng-repeat="inv in invitation">
                 <td>{{inv.name}}</td>
-                <td>{{inv.pattern}}</td>
                 <td>{{inv.description}}</td>
-                <td>{{inv.pricePerPerson}}</td>
-                <td>{{inv.salutation}}</td>
-                <td>{{inv.text}}</td>
-                <td>{{inv.greeting}}</td>
-                <td><a href="#/invitation/{{inv._id}}/edit" class="btn btn-default btn-sm">Edit</a></td>
-                <td><a href="" ng-click="deleteInv(inv)" class="btn btn-danger btn-sm">Delete</a></td>
+                <td>
+                    <a href="#/invitation/{{inv._id}}/edit" class="btn btn-default btn-sm">Edit</a>
+                    <a href="" ng-click="deleteInv(inv._id)" class="btn btn-danger btn-sm">Delete</a>
+                </td>
             </tr>
             </tbody>
         </table>
     </div>
 </div>
-<ul>
-   <!-- <li ng-repeat = "inv in Invitations">{{inv.name}}</li> -->
-</ul>
-<a href = "#/invitation/new" class = "btn btn-default">Add new Invitation</a>
+
+</div>
